@@ -274,17 +274,28 @@ $experiencias = [
             <h2 class="reveal">Aberto a boas<br><em>oportunidades.</em></h2>
             <div class="contact-bottom reveal">
                 <p>Se você procura alguém que goste de entender o problema, aprender rápido e cuidar do código, vale a conversa.</p>
-                <button class="contact-button" type="button" data-copy-intro>
-                    <span data-copy-label>Copiar resumo profissional</span>
-                    <b>↗</b>
-                </button>
+                <div class="contact-actions">
+                    <a class="contact-button" href="mailto:victoremanuel5312@gmail.com">
+                        <span>Enviar e-mail</span>
+                        <b>↗</b>
+                    </a>
+                    <div class="contact-links">
+                        <a href="https://github.com/Victor5312" target="_blank" rel="noopener noreferrer">GitHub <span>↗</span></a>
+                        <a href="https://www.linkedin.com/in/victor-emanuel-" target="_blank" rel="noopener noreferrer">LinkedIn <span>↗</span></a>
+                        <button type="button" data-copy-intro><span data-copy-label>Copiar resumo</span></button>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
     <footer class="site-footer">
         <a class="brand footer-brand" href="#inicio" aria-label="Victor Emanuel — voltar ao início"><img class="brand-logo" src="assets/logo-ve.png" alt="" width="512" height="369"></a>
-        <p>Victor Emanuel — desenvolvedor back-end</p>
+        <div class="footer-links" aria-label="Links profissionais">
+            <a href="mailto:victoremanuel5312@gmail.com">E-mail</a>
+            <a href="https://github.com/Victor5312" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://www.linkedin.com/in/victor-emanuel-" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </div>
         <p>Aberto a oportunidades e projetos selecionados · <?= $anoAtual ?></p>
     </footer>
 
