@@ -82,18 +82,18 @@ $experiencias = [
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfólio de Victor Emanuel, desenvolvedor back-end com PHP, Python e MySQL.">
+    <meta name="description" content="Portfólio de Victor Emanuel, desenvolvedor back-end com mais de 3 anos de experiência em PHP, Python e MySQL.">
     <meta name="theme-color" content="#11110f">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="pt_BR">
     <meta property="og:title" content="Victor Emanuel — Desenvolvedor Back-end">
-    <meta property="og:description" content="PHP, Python e MySQL para construir software claro, útil e fácil de manter.">
+    <meta property="og:description" content="Mais de 3 anos de experiência com PHP, Python e MySQL construindo software claro, útil e fácil de manter.">
     <meta property="og:image" content="<?= h($imagemSocial) ?>">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Victor Emanuel — Desenvolvedor Back-end">
-    <meta name="twitter:description" content="PHP, Python e MySQL para construir software claro, útil e fácil de manter.">
+    <meta name="twitter:description" content="Mais de 3 anos de experiência com PHP, Python e MySQL construindo software claro, útil e fácil de manter.">
     <meta name="twitter:image" content="<?= h($imagemSocial) ?>">
     <title>Victor Emanuel — Desenvolvedor Back-end</title>
     <link rel="icon" type="image/png" href="assets/logo-ve.png">
@@ -105,7 +105,7 @@ $experiencias = [
             <img class="brand-logo" src="assets/logo-ve.png" alt="" width="512" height="369">
             <span class="brand-copy">
                 <strong>Victor Emanuel</strong>
-                <small>Back-end developer</small>
+                <small>Back-end · 3+ anos</small>
             </span>
         </a>
 
@@ -125,7 +125,7 @@ $experiencias = [
     <main>
         <section class="hero section" id="inicio">
             <div class="hero-kicker reveal">
-                <span>Desenvolvedor back-end · PHP &amp; Python</span>
+                <span>Desenvolvedor back-end · 3+ anos de experiência</span>
                 <span>Brasil · aberto a oportunidades</span>
             </div>
 
@@ -162,7 +162,7 @@ $experiencias = [
                     <p>Depois, faço funcionarem <mark>melhor.</mark></p>
                 </div>
                 <div class="about-copy reveal">
-                    <p>Meu foco é back-end com <strong>PHP, Python e MySQL</strong>. Também trabalho com HTML, CSS e JavaScript, o que me ajuda a entender o fluxo completo e conversar melhor com quem cuida da interface.</p>
+                    <p>Tenho <strong>mais de 3 anos de experiência em desenvolvimento</strong>, com foco em back-end usando PHP, Python e MySQL. Também trabalho com HTML, CSS e JavaScript, o que me ajuda a entender o fluxo completo e conversar melhor com quem cuida da interface.</p>
                     <p>Minha experiência também passa por <strong>sistemas hospitalares para prefeituras</strong> e por diferentes sistemas de <strong>controle de embarcações</strong>, além de outras soluções voltadas a operações reais.</p>
                     <p>Também coloquei em produção projetos como o PDV da Gostiki e o PersonalFit. Agora procuro uma equipe onde eu possa evoluir, receber feedback e contribuir de verdade — sem deixar de lado bons projetos independentes.</p>
                     <a class="text-link" href="#processo">Como eu contribuo em um time <span>→</span></a>
