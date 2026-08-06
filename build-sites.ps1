@@ -11,18 +11,21 @@ $html = [regex]::Replace($html, 'https?://[^"'']+/assets/og\.png', '__BASE_URL__
 $css = Get-Content -Raw -Encoding UTF8 (Join-Path $projectDirectory 'styles.css')
 $javascript = Get-Content -Raw -Encoding UTF8 (Join-Path $projectDirectory 'script.js')
 $socialImage = [System.IO.File]::ReadAllBytes((Join-Path $projectDirectory 'assets\og.png'))
+$logoImage = [System.IO.File]::ReadAllBytes((Join-Path $projectDirectory 'assets\logo-ve.png'))
 
 $htmlBase64 = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($html))
 $cssBase64 = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($css))
 $javascriptBase64 = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($javascript))
 $imageBase64 = [Convert]::ToBase64String($socialImage)
+$logoBase64 = [Convert]::ToBase64String($logoImage)
 
 $worker = @"
 const assets = {
   html: '$htmlBase64',
   css: '$cssBase64',
   js: '$javascriptBase64',
-  image: '$imageBase64'
+  image: '$imageBase64',
+  logo: '$logoBase64'
 };
 
 const bytes = (value) => Uint8Array.from(atob(value), (character) => character.charCodeAt(0));
@@ -55,6 +58,12 @@ export default {
       headers['Content-Type'] = 'image/png';
       headers['Cache-Control'] = 'public, max-age=604800';
       return new Response(bytes(assets.image), { headers });
+    }
+
+    if (url.pathname === '/assets/logo-ve.png') {
+      headers['Content-Type'] = 'image/png';
+      headers['Cache-Control'] = 'public, max-age=604800';
+      return new Response(bytes(assets.logo), { headers });
     }
 
     return new Response('Página não encontrada.', {

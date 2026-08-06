@@ -38,14 +38,14 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
 
 copyButton?.addEventListener('click', async () => {
-    const apresentacao = 'Olá! Meu nome é Victor Emanuel. Sou desenvolvedor web e trabalho com PHP, MySQL, HTML, CSS, JavaScript e Python. Quero conversar sobre um projeto.';
+    const apresentacao = 'Victor Emanuel — Desenvolvedor back-end com PHP, Python e MySQL. Experiência em sistemas hospitalares para prefeituras, sistemas de controle de embarcações, PDV da Sorveteria Gostiki e PersonalFit. Também trabalha com HTML, CSS e JavaScript.';
     try {
         await navigator.clipboard.writeText(apresentacao);
         copyButton.querySelector('[data-copy-label]').textContent = 'Apresentação copiada';
         toast?.classList.add('visible');
         window.setTimeout(() => {
             toast?.classList.remove('visible');
-            copyButton.querySelector('[data-copy-label]').textContent = 'Copiar apresentação';
+            copyButton.querySelector('[data-copy-label]').textContent = 'Copiar resumo profissional';
         }, 3000);
     } catch {
         window.prompt('Copie sua apresentação:', apresentacao);
