@@ -1,5 +1,8 @@
 Options -Indexes
 RewriteEngine On
+# Compatibilidade com a versão gerada antes da mudança para a raiz do domínio.
+RewriteRule ^portifolio-personalizado/?$ .output/public/index.html [L]
+RewriteRule ^portifolio-personalizado/(_nuxt/.*|_payload\.json|favicon\.svg)$ .output/public/$1 [L]
 RewriteRule ^$ .output/public/index.html [L]
 RewriteRule ^(_nuxt/.*|_payload\.json|favicon\.svg)$ .output/public/$1 [L]
 RewriteRule ^(?:node_modules|data|components|assets|scripts)/ - [F,L]

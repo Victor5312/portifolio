@@ -1,3 +1,5 @@
+const baseURL = process.env.NUXT_APP_BASE_URL || "/";
+
 export default defineNuxtConfig({
   compatibilityDate: "2025-05-15",
   devtools: { enabled: false },
@@ -10,7 +12,7 @@ export default defineNuxtConfig({
     "~/assets/campo.css",
   ],
   app: {
-    baseURL: "/portifolio-personalizado/",
+    baseURL,
     head: {
       htmlAttrs: { lang: "pt-BR" },
       title: "Victor — Código com intenção.",
@@ -25,7 +27,7 @@ export default defineNuxtConfig({
         {
           rel: "icon",
           type: "image/svg+xml",
-          href: "/portifolio-personalizado/favicon.svg",
+          href: `${baseURL.replace(/\/$/, "")}/favicon.svg`,
         },
       ],
     },

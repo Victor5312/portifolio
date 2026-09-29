@@ -4,7 +4,15 @@ Portfólio autoral em Nuxt e Vue, com animações GSAP e um campo procedural em 
 
 ## Abrir no XAMPP
 
-Com o Apache iniciado, acesse `http://localhost/portifolio-personalizado/`.
+Para a pasta atual `C:\xampp\htdocs\portifolio`, gere a versão com o prefixo local no PowerShell:
+
+```powershell
+$env:NUXT_APP_BASE_URL = '/portifolio/'
+npm run generate
+Remove-Item Env:NUXT_APP_BASE_URL
+```
+
+Com o Apache iniciado, acesse `http://localhost/portifolio/`. Essa geração local tem prefixo diferente da publicação na VPS.
 
 A configuração `.htaccess` serve os arquivos gerados em `.output/public`. Depois de editar o código, execute `npm run generate` para atualizar a versão do XAMPP.
 
@@ -15,7 +23,19 @@ npm install
 npm run dev
 ```
 
-Acesse `http://127.0.0.1:3000/portifolio-personalizado/`.
+Acesse `http://127.0.0.1:3000/`.
+
+## Publicação na VPS
+
+O domínio serve o projeto na raiz `/`. O container `portfolio_php` usa Apache, publica a porta `127.0.0.1:8100` e monta `/srv/apps/portfolio/src` em `/var/www/html` como somente leitura. O `.htaccess` serve a versão estática em `.output/public`; não é necessário Node ou MySQL para executar essa versão.
+
+Para gerar uma nova versão destinada à VPS, execute `npm ci` e `npm run generate` em um ambiente de construção com Node compatível com o `package-lock.json`, sem definir `NUXT_APP_BASE_URL` (ou com valor `/`). Publique o conteúdo gerado em `.output/public` junto do `.htaccess`. Apenas `git pull` não recompila o Nuxt: a saída gerada precisa acompanhar a publicação ou ser construída antes de servir a nova versão.
+
+O `.htaccess` também aceita os caminhos antigos `/portifolio-personalizado/`, usados pela versão que já estava gerada. Não adicione `RewriteBase /portifolio-personalizado/` na VPS.
+
+Na correção de 29/09/2026, `.htaccess` e `nuxt.config.ts` foram ajustados tanto localmente quanto na VPS, sem commit ou push automático. Antes de atualizar com Git, registre e envie as alterações locais e confira `git diff` na VPS: as cópias editadas no servidor podem impedir o próximo pull. Os backups anteriores à correção estão em `/srv/apps/portfolio/htaccess.before-route-fix-20260929` e `/srv/apps/portfolio/nuxt.config.before-route-fix-20260929.ts`.
+
+O repositório atualmente versiona `node_modules` e arquivos de construção. Em uma manutenção separada, retire dependências e caches do índice do Git e configure um processo de geração/publicação; adicionar regras ao `.gitignore` sozinho não remove arquivos já versionados. Não remova `.output/public` da publicação enquanto o Apache depender dessa pasta.
 
 ## Conteúdo pessoal
 
