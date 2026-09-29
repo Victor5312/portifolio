@@ -1,0 +1,11 @@
+Options -Indexes
+RewriteEngine On
+RewriteRule ^$ .output/public/index.html [L]
+RewriteRule ^(_nuxt/.*|_payload\.json|favicon\.svg)$ .output/public/$1 [L]
+RewriteRule ^(?:node_modules|data|components|assets|scripts)/ - [F,L]
+<FilesMatch "\.(vue|ts|md|mjs|log)$|^package(?:-lock)?\.json$">
+  Require all denied
+</FilesMatch>
+<Files "_payload.json">
+  Require all granted
+</Files>
