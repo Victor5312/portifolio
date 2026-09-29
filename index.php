@@ -118,7 +118,7 @@ $experiencias = [
             <a href="#sobre"><span>01</span> Sobre</a>
             <a href="#trabalhos"><span>02</span> Projetos</a>
             <a href="#processo"><span>03</span> Como trabalho</a>
-            <a class="nav-contact" href="#contato">Oportunidades <b>↗</b></a>
+            <a class="nav-contact" href="/portifolio-personalizado/">Oportunidades <b>↗</b></a>
         </nav>
     </header>
 
