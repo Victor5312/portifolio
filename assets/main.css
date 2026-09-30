@@ -469,6 +469,67 @@ footer {
 .cartao-projeto:hover .visual-projeto {
   border-radius: 30px;
 }
+.projeto-pba {
+  background: #191714;
+  color: #fff3e7;
+  --acento-projeto: #f08043;
+}
+.projeto-personalfit {
+  background: #dceacb;
+  color: #213829;
+  --acento-projeto: #385c30;
+}
+.projeto-financeiro {
+  background: #dbe6ed;
+  color: #203b50;
+  --acento-projeto: #365f7f;
+}
+.projeto-cardapio {
+  background: #ece0ef;
+  color: #4c2857;
+  --acento-projeto: #77438a;
+}
+.capa-projeto {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 285px;
+  padding: 20px 8px 48px;
+}
+.nome-capa {
+  font-size: clamp(30px, 3.7vw, 56px);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -1.5px;
+  overflow-wrap: anywhere;
+}
+.projeto-pba .nome-capa {
+  color: var(--acento-projeto);
+  font-size: clamp(64px, 7vw, 105px);
+}
+.legenda-capa {
+  font-size: 15px;
+  margin-top: 14px;
+}
+.recursos-capa {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 28px;
+}
+.recursos-capa span {
+  font-size: 10px;
+  border: 1px solid var(--acento-projeto);
+  border-radius: 20px;
+  padding: 7px 10px;
+}
+.resumo-projeto {
+  margin: 9px 0 20px;
+  max-width: 48ch;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--suave);
+}
 .topo-visual {
   display: flex;
   justify-content: space-between;

@@ -5,5 +5,5 @@ export const profile = {
   email: "",
   github: "",
   linkedin: "",
-  bio: "Meu universo conecta interfaces, lógica e dados. Entre o front-end e o back-end, exploro formas de transformar ideias em experiências digitais claras, funcionais e cheias de personalidade.",
+  bio: "Sou o Victor, desenvolvedor web. Já trabalhei em sites para empresas e sistemas de gestão, cuidando tanto das telas quanto da lógica e do banco de dados. Aqui reuni alguns desses projetos para mostrar um pouco do que faço.",
 };

@@ -43,7 +43,7 @@ Os dados ficam em `data/perfil.ts`. Nome e tecnologias foram baseados nas inform
 
 E-mail, GitHub e LinkedIn só aparecem quando preenchidos. Até lá, o botão de contato permite salvar uma ideia em um arquivo local e informa claramente que nenhuma mensagem foi enviada.
 
-Os dois itens na seção de projetos documentam este próprio portfólio e seu experimento 3D. Não representam trabalhos para clientes.
+A seção de projetos apresenta trabalhos informados pelo Victor e conferidos nos arquivos locais: PBA Contabilidade (`sites/lp-cartorio`), PersonalFit (`personalfit`), Controle Financeiro (`controle-financeiro`) e Cardápio Digital (`cardapio-digital`). Os cartões são capas gráficas, não capturas das telas dos sistemas. As descrições não atribuem resultados comerciais ou autoria exclusiva. Os projetos de origem foram apenas consultados; nenhum dado de usuários ou credencial foi copiado.
 
 ## Tecnologias
 

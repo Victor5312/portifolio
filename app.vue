@@ -72,25 +72,63 @@ const filtered = computed(() =>
 const projects = [
   {
     id: "01",
-    name: "Código com intenção.",
-    type: "ESTE PORTFÓLIO",
-    tags: "NUXT · VUE · GSAP",
-    class: "portfolio",
-    title: "Uma identidade feita de código.",
+    name: "PBA Contabilidade",
+    type: "SITE PARA EMPRESA",
+    tags: "HTML · CSS · JAVASCRIPT",
+    class: "projeto-pba",
+    cover: "PBA",
+    caption: "Contabilidade para cartórios",
+    features: ["Serviços", "Dúvidas frequentes", "Contato"],
+    summary: "Site da PBA voltado à contabilidade para cartórios.",
+    title: "PBA · Contabilidade para cartórios",
     description:
-      "Este portfólio une uma interface responsiva, navegação por seções, transições com GSAP e um campo procedural em Three.js. Uma experiência original inspirada na linguagem visual da Emotion Agency.",
-    stack: ["Nuxt", "Vue", "JavaScript", "HTML", "CSS", "GSAP", "Three.js"],
+      "Participei do desenvolvimento do site da PBA voltado a cartórios. A página apresenta os serviços, explica as etapas do atendimento e reúne dúvidas frequentes e formas de contato. O projeto combina HTML, CSS e JavaScript, com uma aplicação Flask para servir o site.",
+    stack: ["HTML", "CSS", "JavaScript", "Bootstrap", "Python", "Flask"],
   },
   {
     id: "02",
-    name: "Natureza em movimento.",
-    type: "EXPERIMENTO INTERATIVO",
-    tags: "THREE.JS · WEBGL",
-    class: "experimento",
-    title: "Um campo que ganha vida.",
+    name: "PersonalFit",
+    type: "SISTEMA WEB",
+    tags: "PHP · MYSQL · JAVASCRIPT",
+    class: "projeto-personalfit",
+    cover: "PersonalFit",
+    caption: "A rotina do treino, organizada.",
+    features: ["Alunos", "Treinos", "Avaliações"],
+    summary: "Gestão de alunos e treinos, com acesso para o personal e o aluno.",
+    title: "PersonalFit · Alunos e treinos",
     description:
-      "Um percurso em tempo real por colinas, um riacho e grama ao vento. Role para caminhar pelo campo; mova o mouse para afastar as folhas desde o primeiro instante. Movimentos rápidos criam rajadas mais fortes. Você pode pausar ou pular o percurso a qualquer momento.",
-    stack: ["Three.js", "WebGL", "JavaScript"],
+      "Sistema com áreas separadas para personal e aluno. Reúne cadastro de alunos, montagem de treinos, agenda e avaliações físicas. O aluno pode consultar seus treinos e acompanhar o histórico. Também conta com uma API para acesso aos dados do aluno.",
+    stack: ["PHP", "MySQL", "JavaScript", "HTML", "CSS"],
+  },
+  {
+    id: "03",
+    name: "Controle Financeiro",
+    type: "SISTEMA DE GESTÃO",
+    tags: "PHP · MYSQL · JAVASCRIPT",
+    class: "projeto-financeiro",
+    cover: "Contas em dia",
+    caption: "Uma visão do mês inteiro.",
+    features: ["Receitas", "Despesas", "Cartões"],
+    summary: "Receitas, despesas, contas e parcelas em um só painel.",
+    title: "Controle Financeiro · As contas do mês",
+    description:
+      "Sistema para registrar receitas e despesas, organizar contas e acompanhar cartões e compras parceladas. O painel permite consultar os valores por mês e ano, com um resumo do saldo e dos compromissos previstos. Também reúne categorias e metas financeiras.",
+    stack: ["PHP", "MySQL", "JavaScript", "HTML", "CSS"],
+  },
+  {
+    id: "04",
+    name: "Cardápio Digital",
+    type: "SISTEMA WEB",
+    tags: "PHP · MYSQL · JAVASCRIPT",
+    class: "projeto-cardapio",
+    cover: "Cardápio Digital",
+    caption: "Da escolha ao pedido.",
+    features: ["Produtos", "Complementos", "Pedidos"],
+    summary: "Cardápio para sorveterias e açaíterias, com gestão de produtos e pedidos.",
+    title: "Cardápio Digital · Produtos e pedidos",
+    description:
+      "Sistema de cardápio para sorveterias e açaíterias. Cada loja tem seu cardápio público e um painel para cadastrar produtos, tamanhos, complementos, combos e promoções. A gestão de pedidos inclui acompanhamento de status e opções de envio pelo WhatsApp.",
+    stack: ["PHP", "MySQL", "JavaScript", "HTML", "CSS"],
   },
 ];
 function openProject(project) {
@@ -299,22 +337,22 @@ onBeforeUnmount(() => context?.revert());
 
       <section id="sobre" class="sobre espacamento-secao">
         <div class="rotulo-secao">
-          <span>01 / SOBRE MIM</span><span>IDEIAS → CÓDIGO → EXPERIÊNCIAS</span>
+          <span>01 / SOBRE MIM</span><span>UM POUCO SOBRE MEU TRABALHO</span>
         </div>
         <div class="composicao-sobre">
           <div class="simbolo-sobre" aria-hidden="true">↳</div>
           <div>
-            <h2>Por trás de cada tela,<br />uma <em>boa ideia.</em></h2>
+            <h2>Entre sites<br />e <em>sistemas.</em></h2>
             <div class="texto-sobre">
               <p>{{ profile.bio }}</p>
               <p>
-                Acredito no encontro entre o que funciona bem e o que faz
-                sentir. Código com propósito, atenção aos detalhes e espaço para
-                experimentar.
+                Gosto de entender como as coisas funcionam antes de sair
+                programando. O que precisa aparecer na tela? O que dá para
+                simplificar? É a partir dessas perguntas que começo a trabalhar.
               </p>
             </div>
             <a href="#tecnologias" class="link-texto"
-              >Conheça meu universo de tecnologias <span>↘</span></a
+              >Veja as tecnologias que uso <span>↘</span></a
             >
           </div>
         </div>
@@ -328,8 +366,8 @@ onBeforeUnmount(() => context?.revert());
         <div class="cabecalho-secao">
           <h2>O que uso<br /><em>para criar.</em></h2>
           <p>
-            Da estrutura visual à lógica de negócio.<br />Tecnologias que fazem
-            parte do meu universo.
+            Da tela ao banco de dados.<br />Estas são as tecnologias que uso
+            nos meus projetos.
           </p>
         </div>
         <div class="filtros" role="group" aria-label="Filtrar tecnologias">
@@ -362,14 +400,14 @@ onBeforeUnmount(() => context?.revert());
 
       <section id="projetos" class="projetos espacamento-secao">
         <div class="rotulo-secao">
-          <span>03 / PROJETOS & EXPLORAÇÕES</span
-          ><span>FEITO PARA EXPLORAR</span>
+          <span>03 / PROJETOS</span
+          ><span>SITES E SISTEMAS</span>
         </div>
         <div class="cabecalho-secao">
-          <h2>Do conceito<br />ao <em>primeiro clique.</em></h2>
+          <h2>Alguns trabalhos<br />de que <em>fiz parte.</em></h2>
           <p>
-            Um portfólio em construção constante.<br />Conheça este site e o
-            experimento que vive nele.
+            Sites para apresentar uma empresa e sistemas para organizar a
+            rotina. Selecione um projeto para saber mais.
           </p>
         </div>
         <div class="grade-projetos">
@@ -385,36 +423,20 @@ onBeforeUnmount(() => context?.revert());
                 <span>V / {{ project.id }}</span
                 ><span>{{ project.type }}</span>
               </div>
-              <template v-if="project.id === '01'"
-                ><div class="miniatura-site">
-                  <div class="miniatura-navegacao">
-                    victor✳ <span>DESIGN & CÓDIGO ↗</span>
-                  </div>
-                  <div class="miniatura-titulo">
-                    Ideias que<br />ganham <em>vida.</em>
-                  </div>
-                  <div class="miniatura-orbita" aria-hidden="true"></div>
-                  <div class="miniatura-rodape">
-                    DO CONCEITO AO DIGITAL. <span>↗</span>
-                  </div>
-                </div></template
-              ><template v-else
-                ><div class="arte-geometrica" aria-hidden="true">
-                  <span
-                    v-for="n in 12"
-                    :key="n"
-                    :style="{ transform: `rotate(${n * 15}deg)` }"
-                  ></span>
+              <div class="capa-projeto">
+                <span class="nome-capa">{{ project.cover }}</span>
+                <span class="legenda-capa">{{ project.caption }}</span>
+                <div class="recursos-capa">
+                  <span v-for="feature in project.features" :key="feature">{{ feature }}</span>
                 </div>
-                <span class="rotulo-experimento"
-                  >EXPERIMENTO / 001<br />FOLHAS × VENTO</span
-                ></template
-              ><span class="abrir-projeto">↗</span>
+              </div>
+              <span class="abrir-projeto">↗</span>
             </div>
             <div class="informacoes-projeto">
               <h3>{{ project.name }}</h3>
               <span>{{ project.tags }}</span>
             </div>
+            <p class="resumo-projeto">{{ project.summary }}</p>
           </button>
         </div>
       </section>
@@ -546,9 +568,9 @@ onBeforeUnmount(() => context?.revert());
             tech
           }}</span>
         </div>
-        <a class="link-circular" href="#inicio" @click="dialog.close()"
-          ><span class="circulo">↗</span> Explorar a experiência</a
-        >
+        <button class="link-texto" @click="dialog.close()">
+          Voltar aos projetos <span>↙</span>
+        </button>
       </div>
     </dialog>
     <dialog
