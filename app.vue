@@ -1,6 +1,20 @@
 <script setup>
 import { profile } from "./data/perfil";
 import { gsap } from "gsap";
+import rajaScreenshot from "./assets/projetos/rajahub.png";
+import pbaLogo from "./assets/marcas/pba.svg";
+import alfredLogo from "./assets/marcas/alfred.png";
+import rajaLogo from "./assets/marcas/raja.png";
+import gostikiLogo from "./assets/marcas/gostiki.png";
+
+const logosPaused = ref(false);
+const brands = [
+  { name: "PBA Contabilidade", image: pbaLogo, invert: true },
+  { name: "Alfred", image: alfredLogo },
+  { name: "RajaHub", image: rajaLogo, invert: true },
+  { name: "Gostiki", image: gostikiLogo },
+  { name: "PersonalFit" },
+];
 
 const menuOpen = ref(false);
 const dark = ref(false);
@@ -102,32 +116,50 @@ const projects = [
   },
   {
     id: "03",
-    name: "Controle Financeiro",
-    type: "SISTEMA DE GESTÃO",
+    name: "Alfred",
+    type: "SISTEMA HOSPITALAR",
     tags: "PHP · MYSQL · JAVASCRIPT",
-    class: "projeto-financeiro",
-    cover: "Contas em dia",
-    caption: "Uma visão do mês inteiro.",
-    features: ["Receitas", "Despesas", "Cartões"],
-    summary: "Receitas, despesas, contas e parcelas em um só painel.",
-    title: "Controle Financeiro · As contas do mês",
+    class: "projeto-alfred",
+    cover: "Alfred",
+    caption: "Presente em 27 cidades.",
+    features: ["Gestão hospitalar", "Atendimentos", "Agendas"],
+    summary: "Sistema hospitalar utilizado em 27 cidades, em cujo desenvolvimento participei.",
+    title: "Alfred · Gestão hospitalar",
     description:
-      "Sistema para registrar receitas e despesas, organizar contas e acompanhar cartões e compras parceladas. O painel permite consultar os valores por mês e ano, com um resumo do saldo e dos compromissos previstos. Também reúne categorias e metas financeiras.",
+      "Participei do desenvolvimento do Alfred, sistema hospitalar utilizado em 27 cidades. O sistema reúne recursos para organizar atendimentos, agendas e outras rotinas da saúde, com módulos para diferentes etapas da gestão hospitalar.",
     stack: ["PHP", "MySQL", "JavaScript", "HTML", "CSS"],
   },
   {
     id: "04",
-    name: "Cardápio Digital",
-    type: "SISTEMA WEB",
-    tags: "PHP · MYSQL · JAVASCRIPT",
-    class: "projeto-cardapio",
-    cover: "Cardápio Digital",
-    caption: "Da escolha ao pedido.",
-    features: ["Produtos", "Complementos", "Pedidos"],
-    summary: "Cardápio para sorveterias e açaíterias, com gestão de produtos e pedidos.",
-    title: "Cardápio Digital · Produtos e pedidos",
+    name: "RajaHub",
+    type: "SITE INSTITUCIONAL",
+    tags: "WORDPRESS · PHP · JAVASCRIPT",
+    class: "projeto-raja",
+    cover: "RajaHub",
+    caption: "Empreendedorismo, tecnologia e inovação.",
+    features: ["Ventures", "Bizz", "Inc"],
+    image: rajaScreenshot,
+    imageAlt: "Página inicial do RajaHub, com navegação preta, detalhes verdes e apresentação sobre empreendedorismo, tecnologia e inovação.",
+    url: "https://rajahub.com.br/",
+    summary: "Site do RajaHub, que apresenta suas frentes de atuação e conecta empreendedores e investidores.",
+    title: "RajaHub · Site institucional",
     description:
-      "Sistema de cardápio para sorveterias e açaíterias. Cada loja tem seu cardápio público e um painel para cadastrar produtos, tamanhos, complementos, combos e promoções. A gestão de pedidos inclui acompanhamento de status e opções de envio pelo WhatsApp.",
+      "Participei do desenvolvimento do site do RajaHub, voltado a empreendedorismo, tecnologia e inovação. O site apresenta as frentes de atuação do grupo e os caminhos para quem busca investimento ou quer investir. O projeto local utiliza WordPress, com templates em PHP e estilos próprios.",
+    stack: ["WordPress", "PHP", "JavaScript", "HTML", "CSS"],
+  },
+  {
+    id: "05",
+    name: "Gostiki",
+    type: "SISTEMA DE GESTÃO",
+    tags: "PHP · MYSQL · JAVASCRIPT",
+    class: "projeto-gostiki",
+    cover: "Gostiki",
+    caption: "Do balcão ao delivery.",
+    features: ["PDV", "Pedidos", "Impressão"],
+    summary: "Sistema para a Gostiki Açaí & Sorvete, com vendas, pedidos e gestão de lojas.",
+    title: "Gostiki · Vendas e operação",
+    description:
+      "Participei do desenvolvimento do sistema da Gostiki Açaí & Sorvete. O projeto reúne ponto de venda, mesas, delivery, cadastro de produtos e complementos, além da gestão de lojas e clientes. Também inclui recursos de integração com o iFood e impressão de comandas pelo Gostiki Print.",
     stack: ["PHP", "MySQL", "JavaScript", "HTML", "CSS"],
   },
 ];
@@ -358,6 +390,25 @@ onBeforeUnmount(() => context?.revert());
         </div>
       </section>
 
+      <section id="marcas" class="faixa-marcas" aria-label="Marcas e projetos em que trabalhei">
+        <div class="cabecalho-marcas">
+          <p>MARCAS E PROJETOS EM QUE TRABALHEI</p>
+          <button v-if="motion" @click="logosPaused = !logosPaused" :aria-pressed="logosPaused">
+            {{ logosPaused ? "Retomar faixa" : "Pausar faixa" }}
+          </button>
+        </div>
+        <div class="janela-marcas">
+          <div class="trilho-marcas" :class="{ pausado: logosPaused }">
+            <div v-for="copy in 2" :key="copy" class="grupo-marcas" :aria-hidden="copy === 2 ? 'true' : undefined">
+              <div v-for="brand in brands" :key="brand.name" class="marca-projeto">
+                <img v-if="brand.image" :src="brand.image" :alt="brand.name" :class="{ invertida: brand.invert }" loading="lazy" />
+                <span v-else class="marca-tipografica">{{ brand.name }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="tecnologias" class="tecnologias espacamento-secao">
         <div class="rotulo-secao">
           <span>02 / TECNOLOGIAS</span
@@ -423,7 +474,11 @@ onBeforeUnmount(() => context?.revert());
                 <span>V / {{ project.id }}</span
                 ><span>{{ project.type }}</span>
               </div>
-              <div class="capa-projeto">
+              <div v-if="project.image" class="print-projeto">
+                <div class="barra-print" aria-hidden="true"><span>● ● ●</span> rajahub.com.br</div>
+                <img :src="project.image" :alt="project.imageAlt" loading="lazy" width="1265" height="712" />
+              </div>
+              <div v-else class="capa-projeto">
                 <span class="nome-capa">{{ project.cover }}</span>
                 <span class="legenda-capa">{{ project.caption }}</span>
                 <div class="recursos-capa">
@@ -563,11 +618,13 @@ onBeforeUnmount(() => context?.revert());
         >
         <h2>{{ selectedProject.title }}</h2>
         <p>{{ selectedProject.description }}</p>
+        <img v-if="selectedProject.image" class="print-detalhes" :src="selectedProject.image" :alt="selectedProject.imageAlt" width="1265" height="712" />
         <div class="etiquetas-tecnologias">
           <span v-for="tech in selectedProject.stack" :key="tech">{{
             tech
           }}</span>
         </div>
+        <a v-if="selectedProject.url" class="link-texto visitar-projeto" :href="selectedProject.url" target="_blank" rel="noopener noreferrer">Visitar site <span>↗</span></a>
         <button class="link-texto" @click="dialog.close()">
           Voltar aos projetos <span>↙</span>
         </button>

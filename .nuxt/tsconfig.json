@@ -122,7 +122,7 @@
         "./imports"
       ],
       "#app-manifest": [
-        "./manifest/meta/dev.json"
+        "./manifest/meta/b4eac3e0-6cb6-498f-8472-d8964a704c73.json"
       ],
       "#components": [
         "./components"
@@ -172,6 +172,6 @@
   "exclude": [
     "../dist",
     "../.data",
-    "dev"
+    "../.output"
   ]
 }

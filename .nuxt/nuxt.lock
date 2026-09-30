@@ -1,9 +1,0 @@
-{
-  "pid": 30160,
-  "startedAt": 1790775367799,
-  "command": "dev",
-  "cwd": "C:/xampp/htdocs/portifolio",
-  "port": 4173,
-  "hostname": "127.0.0.1",
-  "url": "http://127.0.0.1:4173"
-}

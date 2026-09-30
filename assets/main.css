@@ -448,6 +448,88 @@ footer {
 .projetos {
   padding-top: 95px;
 }
+.faixa-marcas {
+  padding: 30px 0 40px;
+  background: #fff;
+  color: #222;
+  border-block: 1px solid #e7e7e7;
+}
+.cabecalho-marcas {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 0 4% 24px;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+.cabecalho-marcas button {
+  color: #444;
+  background: transparent;
+  font-size: 11px;
+  text-decoration: underline;
+  white-space: nowrap;
+}
+.janela-marcas {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
+}
+.trilho-marcas {
+  display: flex;
+  width: max-content;
+  animation: desfilar-marcas 32s linear infinite;
+}
+.grupo-marcas {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: max(100vw, 1000px);
+  flex-shrink: 0;
+}
+.marca-projeto {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 180px;
+  height: 90px;
+  padding: 12px;
+}
+.marca-projeto img {
+  width: 100%;
+  max-height: 64px;
+  object-fit: contain;
+  filter: grayscale(1);
+}
+.marca-projeto img.invertida {
+  filter: grayscale(1) invert(1);
+}
+.marca-tipografica {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -1px;
+}
+.trilho-marcas.pausado, .faixa-marcas:hover .trilho-marcas {
+  animation-play-state: paused;
+}
+@keyframes desfilar-marcas {
+  to { transform: translateX(-50%); }
+}
+.movimento-desativado .trilho-marcas {
+  animation: none;
+  width: 100%;
+}
+.movimento-desativado .grupo-marcas {
+  width: 100%;
+  flex-wrap: wrap;
+}
+.movimento-desativado .grupo-marcas[aria-hidden="true"] {
+  display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .trilho-marcas { animation: none; width: 100%; }
+  .grupo-marcas { width: 100%; flex-wrap: wrap; }
+  .grupo-marcas[aria-hidden="true"] { display: none; }
+}
 .grade-projetos {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -479,15 +561,53 @@ footer {
   color: #213829;
   --acento-projeto: #385c30;
 }
-.projeto-financeiro {
+.projeto-alfred {
   background: #dbe6ed;
   color: #203b50;
   --acento-projeto: #365f7f;
 }
-.projeto-cardapio {
+.projeto-raja {
+  background: #17221b;
+  color: #eaf4ec;
+  --acento-projeto: #58ec39;
+}
+.projeto-gostiki {
   background: #ece0ef;
   color: #4c2857;
   --acento-projeto: #77438a;
+}
+.print-projeto {
+  margin: 30px 0 0;
+  border: 1px solid #ffffff30;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px #0004;
+}
+.barra-print {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 12px;
+  background: #27362c;
+  color: #eaf4ec;
+  font-size: 10px;
+}
+.barra-print span {
+  color: #97af9e;
+  font-size: 8px;
+}
+.print-projeto img, .print-detalhes {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.print-detalhes {
+  margin-top: 20px;
+  border-radius: 8px;
+}
+.visitar-projeto {
+  margin-right: 24px;
+  margin-bottom: 16px;
 }
 .capa-projeto {
   display: flex;

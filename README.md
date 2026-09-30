@@ -43,9 +43,11 @@ Os dados ficam em `data/perfil.ts`. Nome e tecnologias foram baseados nas inform
 
 E-mail, GitHub e LinkedIn só aparecem quando preenchidos. Até lá, o botão de contato permite salvar uma ideia em um arquivo local e informa claramente que nenhuma mensagem foi enviada.
 
-A seção de projetos apresenta trabalhos informados pelo Victor e conferidos nos arquivos locais: PBA Contabilidade (`sites/lp-cartorio`), PersonalFit (`personalfit`), Controle Financeiro (`controle-financeiro`) e Cardápio Digital (`cardapio-digital`). Os cartões são capas gráficas, não capturas das telas dos sistemas. As descrições não atribuem resultados comerciais ou autoria exclusiva. Os projetos de origem foram apenas consultados; nenhum dado de usuários ou credencial foi copiado.
+A seção de projetos apresenta trabalhos informados pelo Victor e conferidos nos arquivos locais: PBA Contabilidade (`sites/lp-cartorio`), PersonalFit (`personalfit`), Alfred (`alfred`), RajaHub (`rajahub`) e Gostiki (`gostiki`). A presença do Alfred em 27 cidades foi informada pelo Victor. O card do RajaHub usa uma captura real da página inicial pública, salva em `assets/projetos/rajahub.png`; os demais usam capas gráficas. As descrições não atribuem autoria exclusiva. Os projetos de origem foram apenas consultados; nenhum dado de usuários ou credencial foi copiado.
 
 ## Tecnologias
+
+A faixa de marcas usa as logos públicas de PBA, Alfred, RajaHub e Gostiki, guardadas em `assets/marcas` e exibidas em escala de cinza. PersonalFit aparece apenas como nome. Fontes: `https://pbacontabilidadecartorios.com.br/lp-cartorio/assets/img/logo-pba.svg`, `https://alfredsistemas.com.br/assets/img/logo-alfred.png`, `https://rajahub.com.br/wp-content/uploads/2025/01/logo-Photoroom.png` e `https://gostiki.com.br/img/logo.png`. O movimento pode ser pausado e respeita a preferência por movimento reduzido.
 
 - Construção: Nuxt, Vue, JavaScript, HTML, CSS, GSAP, Three.js e WebGL.
 - Tecnologias apresentadas no perfil: PHP, Python, Flask, Django, MySQL, JavaScript, HTML e CSS.
