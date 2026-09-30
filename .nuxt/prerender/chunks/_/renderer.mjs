@@ -1,14 +1,14 @@
-import { createRenderer, getRequestDependencies, getPreloadLinks, getPrefetchLinks } from 'file://C:/xampp/htdocs/portifolio-personalizado/node_modules/vue-bundle-renderer/dist/runtime.mjs';
-import { getResponseStatusText, getResponseStatus, getQuery, createError, appendResponseHeader } from 'file://C:/xampp/htdocs/portifolio-personalizado/node_modules/h3/dist/index.mjs';
-import { joinRelativeURL, encodePath, joinURL } from 'file://C:/xampp/htdocs/portifolio-personalizado/node_modules/ufo/dist/index.mjs';
-import { renderToString } from 'file://C:/xampp/htdocs/portifolio-personalizado/node_modules/vue/server-renderer/index.mjs';
+import { createRenderer, getRequestDependencies, getPreloadLinks, getPrefetchLinks } from 'file://C:/xampp/htdocs/portifolio/node_modules/vue-bundle-renderer/dist/runtime.mjs';
+import { getResponseStatusText, getResponseStatus, getQuery, createError, appendResponseHeader } from 'file://C:/xampp/htdocs/portifolio/node_modules/h3/dist/index.mjs';
+import { joinRelativeURL, encodePath, joinURL } from 'file://C:/xampp/htdocs/portifolio/node_modules/ufo/dist/index.mjs';
+import { renderToString } from 'file://C:/xampp/htdocs/portifolio/node_modules/vue/server-renderer/index.mjs';
 import { a as useRuntimeConfig, b as useStorage, d as defineRenderHandler, g as getRouteRules, u as useNitroApp } from './nitro.mjs';
-import { createHead as createHead$1, propsToString, renderSSRHead } from 'file://C:/xampp/htdocs/portifolio-personalizado/node_modules/unhead/dist/server.mjs';
+import { createHead as createHead$1, propsToString, renderSSRHead } from 'file://C:/xampp/htdocs/portifolio/node_modules/unhead/dist/server.mjs';
 import { AsyncLocalStorage } from 'node:async_hooks';
-import { stringify, uneval } from 'file://C:/xampp/htdocs/portifolio-personalizado/node_modules/devalue/index.js';
-import { walkResolver } from 'file://C:/xampp/htdocs/portifolio-personalizado/node_modules/unhead/dist/utils.mjs';
-import { isRef, toValue, hasInjectionContext, inject, getCurrentScope, ref, watchEffect, getCurrentInstance, onBeforeUnmount, onDeactivated, onActivated } from 'file://C:/xampp/htdocs/portifolio-personalizado/node_modules/vue/index.mjs';
-import { DeprecationsPlugin, PromisesPlugin, TemplateParamsPlugin, AliasSortingPlugin } from 'file://C:/xampp/htdocs/portifolio-personalizado/node_modules/unhead/dist/plugins.mjs';
+import { stringify, uneval } from 'file://C:/xampp/htdocs/portifolio/node_modules/devalue/index.js';
+import { walkResolver } from 'file://C:/xampp/htdocs/portifolio/node_modules/unhead/dist/utils.mjs';
+import { isRef, toValue, hasInjectionContext, inject, getCurrentScope, ref, watchEffect, getCurrentInstance, onBeforeUnmount, onDeactivated, onActivated } from 'file://C:/xampp/htdocs/portifolio/node_modules/vue/index.mjs';
+import { DeprecationsPlugin, PromisesPlugin, TemplateParamsPlugin, AliasSortingPlugin } from 'file://C:/xampp/htdocs/portifolio/node_modules/unhead/dist/plugins.mjs';
 
 const VueResolver = (_, value) => {
   return isRef(value) ? toValue(value) : value;
@@ -85,7 +85,7 @@ function createHead(options = {}) {
 
 const NUXT_PAYLOAD_EXTRACTION = true;
 
-const appHead = {"meta":[{"name":"viewport","content":"width=device-width, initial-scale=1"},{"charset":"utf-8"},{"name":"description","content":"Portfólio de Victor. Desenvolvimento web, interfaces e experiências digitais. PHP, Python, Flask, Django, MySQL e JavaScript."}],"link":[{"rel":"icon","type":"image/svg+xml","href":"/portifolio-personalizado/favicon.svg"}],"style":[],"script":[],"noscript":[],"htmlAttrs":{"lang":"pt-BR"},"title":"Victor — Código com intenção."};
+const appHead = {"meta":[{"name":"viewport","content":"width=device-width, initial-scale=1"},{"charset":"utf-8"},{"name":"description","content":"Portfólio de Victor. Desenvolvimento web, interfaces e experiências digitais. PHP, Python, Flask, Django, MySQL e JavaScript."}],"link":[{"rel":"icon","type":"image/svg+xml","href":"/favicon.svg"}],"style":[],"script":[],"noscript":[],"htmlAttrs":{"lang":"pt-BR"},"title":"Victor — Código com intenção."};
 
 const appRootTag = "div";
 

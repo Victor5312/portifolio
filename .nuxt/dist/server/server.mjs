@@ -1,11 +1,11 @@
 import { shallowReactive, reactive, effectScope, getCurrentScope, hasInjectionContext, getCurrentInstance, inject, toRef, computed, defineComponent, h, isReadonly, isRef, isShallow, isReactive, toRaw, createElementBlock, shallowRef, provide, cloneVNode, ref, mergeProps, unref, useSSRContext, defineAsyncComponent, onErrorCaptured, onServerPrefetch, createVNode, resolveDynamicComponent, createApp } from "vue";
-import { $fetch } from "C:/xampp/htdocs/portifolio-personalizado/node_modules/ofetch/dist/node.mjs";
+import { $fetch } from "C:/xampp/htdocs/portifolio/node_modules/ofetch/dist/node.mjs";
 import { baseURL } from "#internal/nuxt/paths";
-import { createHooks } from "C:/xampp/htdocs/portifolio-personalizado/node_modules/hookable/dist/index.mjs";
-import { getContext } from "C:/xampp/htdocs/portifolio-personalizado/node_modules/unctx/dist/index.mjs";
-import { sanitizeStatusCode, createError as createError$1 } from "C:/xampp/htdocs/portifolio-personalizado/node_modules/h3/dist/index.mjs";
-import { hasProtocol, joinURL, withQuery, parseURL, encodePath, decodePath, isScriptProtocol, isEqual, stringifyParsedURL, stringifyQuery, parseQuery } from "C:/xampp/htdocs/portifolio-personalizado/node_modules/ufo/dist/index.mjs";
-import { defu } from "C:/xampp/htdocs/portifolio-personalizado/node_modules/defu/dist/defu.mjs";
+import { createHooks } from "C:/xampp/htdocs/portifolio/node_modules/hookable/dist/index.mjs";
+import { getContext } from "C:/xampp/htdocs/portifolio/node_modules/unctx/dist/index.mjs";
+import { sanitizeStatusCode, createError as createError$1 } from "C:/xampp/htdocs/portifolio/node_modules/h3/dist/index.mjs";
+import { hasProtocol, joinURL, withQuery, parseURL, encodePath, decodePath, isScriptProtocol, isEqual, stringifyParsedURL, stringifyQuery, parseQuery } from "C:/xampp/htdocs/portifolio/node_modules/ufo/dist/index.mjs";
+import { defu } from "C:/xampp/htdocs/portifolio/node_modules/defu/dist/defu.mjs";
 import { ssrRenderAttrs, ssrRenderAttr, ssrInterpolate, ssrRenderList, ssrRenderStyle, ssrRenderComponent, ssrRenderClass, ssrRenderSuspense, ssrRenderVNode } from "vue/server-renderer";
 if (!globalThis.$fetch) {
   globalThis.$fetch = $fetch.create({
@@ -875,20 +875,20 @@ const _sfc_main$2 = {
       }
       _push(`<main id="conteudo"><div id="inicio" class="percurso-campo"><section class="abertura" style="${ssrRenderStyle({ "--progresso": unref(progressoCampo) })}" aria-label="Percurso interativo pelo campo"><div class="introducao-abertura"><span class="sobretitulo"><i class="ponto-destaque"></i> OLÁ, EU SOU O VICTOR</span><p>Entre boas ideias<br>e experiências reais, existe código.</p></div><div class="arte-abertura">`);
       _push(ssrRenderComponent(_component_ClientOnly, null, {}, _parent));
-      _push(`</div><div class="legenda-arte"><span>UM CAMPO DE POSSIBILIDADES</span><span>ROLE PARA CAMINHAR. MOVA O MOUSE PARA EXPLORAR.</span></div><h1 class="titulo-abertura"><span>Tem que ver </span><span class="segunda-linha"><em>oque.</em><span class="asterisco-titulo" aria-hidden="true">✳</span></span><span>Colocar <em>aqui.</em></span></h1><div class="${ssrRenderClass([{
+      _push(`</div><div class="legenda-arte"><span>UM CAMPO DE POSSIBILIDADES</span><span>ROLE PARA CAMINHAR. MOVA O MOUSE PARA EXPLORAR.</span></div><h1 class="titulo-abertura"><span>Um pouco</span><span class="segunda-linha"><em>do que</em><span class="asterisco-titulo" aria-hidden="true">✳</span></span><span>eu <em>faço.</em></span></h1><div class="${ssrRenderClass([{
         visivel: unref(progressoCampo) > 0.2 && unref(progressoCampo) < 0.94,
         "mensagem-clareira": unref(progressoCampo) > 0.58
       }, "mensagem-percurso"])}"><span class="sobretitulo">${ssrInterpolate(unref(progressoCampo) < 0.58 ? "01 / EXPLORE" : unref(progressoCampo) < 0.7 ? "02 / RESPIRE" : unref(progressoCampo) < 0.83 ? "03 / AMPLIE" : "04 / NOVOS ÂNGULOS")}</span>`);
       if (unref(progressoCampo) < 0.58) {
-        _push(`<h2> Cada movimento<br>abre <em>um caminho.</em></h2>`);
+        _push(`<h2> Fique à vontade.<br><em>A casa é sua.</em></h2>`);
       } else if (unref(progressoCampo) < 0.7) {
-        _push(`<h2> Um lugar<br>para <em>florescer.</em></h2>`);
+        _push(`<h2> Pode ir<br><em>sem pressa.</em></h2>`);
       } else if (unref(progressoCampo) < 0.83) {
-        _push(`<h2> Veja além<br>do <em>primeiro olhar.</em></h2>`);
+        _push(`<h2> De longe,<br><em>tudo muda.</em></h2>`);
       } else {
-        _push(`<h2>A mesma ideia.<br><em>Outros pontos de vista.</em></h2>`);
+        _push(`<h2>Agora, vamos<br><em>aos projetos.</em></h2>`);
       }
-      _push(`</div><div class="controles-percurso"><span>PERCURSO ${ssrInterpolate(String(Math.round(unref(progressoCampo) * 100)).padStart(3, "0"))}%</span><div class="barra-percurso" aria-hidden="true"><span style="${ssrRenderStyle({ transform: `scaleX(${unref(progressoCampo)})` })}"></span></div><button${ssrRenderAttr("aria-pressed", !unref(motion))}>${ssrInterpolate(unref(motion) ? "Pausar movimento" : "Retomar movimento")}</button><a href="#sobre">Pular percurso ↗</a></div><div class="rodape-abertura"><a class="link-circular" href="#projetos"><span class="circulo">↗</span> Explore meu trabalho</a><p> DO BACK-END À INTERFACE.<br>DA PRIMEIRA LINHA AO ÚLTIMO DETALHE. </p><a href="#sobre" class="link-rolagem">ROLE PARA DESCOBRIR <span>↓</span></a></div><div class="indice-abertura"><span>PORTFÓLIO PESSOAL</span><span>CRIATIVIDADE ENCONTRA TECNOLOGIA</span><span>© ${ssrInterpolate((/* @__PURE__ */ new Date()).getFullYear())}</span></div></section></div><section id="sobre" class="sobre espacamento-secao"><div class="rotulo-secao"><span>01 / SOBRE MIM</span><span>IDEIAS → CÓDIGO → EXPERIÊNCIAS</span></div><div class="composicao-sobre"><div class="simbolo-sobre" aria-hidden="true">↳</div><div><h2>Por trás de cada tela,<br>uma <em>boa ideia.</em></h2><div class="texto-sobre"><p>${ssrInterpolate(unref(profile).bio)}</p><p> Acredito no encontro entre o que funciona bem e o que faz sentir. Código com propósito, atenção aos detalhes e espaço para experimentar. </p></div><a href="#tecnologias" class="link-texto">Conheça meu universo de tecnologias <span>↘</span></a></div></div></section><section id="tecnologias" class="tecnologias espacamento-secao"><div class="rotulo-secao"><span>02 / TECNOLOGIAS</span><span>AS FERRAMENTAS. AS POSSIBILIDADES.</span></div><div class="cabecalho-secao"><h2>Minha base.<br><em>Muitas possibilidades.</em></h2><p> Da estrutura visual à lógica de negócio.<br>Tecnologias que fazem parte do meu universo. </p></div><div class="filtros" role="group" aria-label="Filtrar tecnologias"><!--[-->`);
+      _push(`</div><div class="controles-percurso"><span>PERCURSO ${ssrInterpolate(String(Math.round(unref(progressoCampo) * 100)).padStart(3, "0"))}%</span><div class="barra-percurso" aria-hidden="true"><span style="${ssrRenderStyle({ transform: `scaleX(${unref(progressoCampo)})` })}"></span></div><button${ssrRenderAttr("aria-pressed", !unref(motion))}>${ssrInterpolate(unref(motion) ? "Pausar movimento" : "Retomar movimento")}</button><a href="#sobre">Pular percurso ↗</a></div><div class="rodape-abertura"><a class="link-circular" href="#projetos"><span class="circulo">↗</span> Explore meu trabalho</a><p> DO BACK-END À INTERFACE.<br>DA PRIMEIRA LINHA AO ÚLTIMO DETALHE. </p><a href="#sobre" class="link-rolagem">ROLE PARA DESCOBRIR <span>↓</span></a></div><div class="indice-abertura"><span>PORTFÓLIO PESSOAL</span><span>CRIATIVIDADE ENCONTRA TECNOLOGIA</span><span>© ${ssrInterpolate((/* @__PURE__ */ new Date()).getFullYear())}</span></div></section></div><section id="sobre" class="sobre espacamento-secao"><div class="rotulo-secao"><span>01 / SOBRE MIM</span><span>IDEIAS → CÓDIGO → EXPERIÊNCIAS</span></div><div class="composicao-sobre"><div class="simbolo-sobre" aria-hidden="true">↳</div><div><h2>Por trás de cada tela,<br>uma <em>boa ideia.</em></h2><div class="texto-sobre"><p>${ssrInterpolate(unref(profile).bio)}</p><p> Acredito no encontro entre o que funciona bem e o que faz sentir. Código com propósito, atenção aos detalhes e espaço para experimentar. </p></div><a href="#tecnologias" class="link-texto">Conheça meu universo de tecnologias <span>↘</span></a></div></div></section><section id="tecnologias" class="tecnologias espacamento-secao"><div class="rotulo-secao"><span>02 / TECNOLOGIAS</span><span>AS FERRAMENTAS. AS POSSIBILIDADES.</span></div><div class="cabecalho-secao"><h2>O que uso<br><em>para criar.</em></h2><p> Da estrutura visual à lógica de negócio.<br>Tecnologias que fazem parte do meu universo. </p></div><div class="filtros" role="group" aria-label="Filtrar tecnologias"><!--[-->`);
       ssrRenderList(filters, (filter) => {
         _push(`<button${ssrRenderAttr("aria-pressed", unref(selectedFilter) === filter)} class="${ssrRenderClass({ ativo: unref(selectedFilter) === filter })}">${ssrInterpolate(filter)}`);
         if (filter === "Todas") {
@@ -986,8 +986,8 @@ const _sfc_main$1 = {
     const statusText = _error.statusMessage ?? (is404 ? "Page Not Found" : "Internal Server Error");
     const description = _error.message || _error.toString();
     const stack = void 0;
-    const _Error404 = defineAsyncComponent(() => import("./_nuxt/error-404-CdcHPaOJ.js"));
-    const _Error = defineAsyncComponent(() => import("./_nuxt/error-500-z2IllWnK.js"));
+    const _Error404 = defineAsyncComponent(() => import("./_nuxt/error-404-Cky2T_uI.js"));
+    const _Error = defineAsyncComponent(() => import("./_nuxt/error-500-J9kD2MT2.js"));
     const ErrorTemplate = is404 ? _Error404 : _Error;
     return (_ctx, _push, _parent, _attrs) => {
       _push(ssrRenderComponent(unref(ErrorTemplate), mergeProps({ status: unref(status), statusText: unref(statusText), statusCode: unref(status), statusMessage: unref(statusText), description: unref(description), stack: unref(stack) }, _attrs), null, _parent));

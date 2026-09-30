@@ -1,15 +1,15 @@
 import { mergeProps, useSSRContext } from "vue";
 import { ssrRenderAttrs, ssrInterpolate } from "vue/server-renderer";
-import { _ as _export_sfc, u as useHead } from "./_plugin-vue_export-helper-DER_p-Zg.js";
-import "C:/xampp/htdocs/portifolio-personalizado/node_modules/@unhead/vue/dist/index.mjs";
+import { _ as _export_sfc, u as useHead } from "./_plugin-vue_export-helper-DZKcESW7.js";
+import "C:/xampp/htdocs/portifolio/node_modules/@unhead/vue/dist/index.mjs";
 import "../server.mjs";
-import "C:/xampp/htdocs/portifolio-personalizado/node_modules/ofetch/dist/node.mjs";
+import "C:/xampp/htdocs/portifolio/node_modules/ofetch/dist/node.mjs";
 import "#internal/nuxt/paths";
-import "C:/xampp/htdocs/portifolio-personalizado/node_modules/hookable/dist/index.mjs";
-import "C:/xampp/htdocs/portifolio-personalizado/node_modules/unctx/dist/index.mjs";
-import "C:/xampp/htdocs/portifolio-personalizado/node_modules/h3/dist/index.mjs";
-import "C:/xampp/htdocs/portifolio-personalizado/node_modules/ufo/dist/index.mjs";
-import "C:/xampp/htdocs/portifolio-personalizado/node_modules/defu/dist/defu.mjs";
+import "C:/xampp/htdocs/portifolio/node_modules/hookable/dist/index.mjs";
+import "C:/xampp/htdocs/portifolio/node_modules/unctx/dist/index.mjs";
+import "C:/xampp/htdocs/portifolio/node_modules/h3/dist/index.mjs";
+import "C:/xampp/htdocs/portifolio/node_modules/ufo/dist/index.mjs";
+import "C:/xampp/htdocs/portifolio/node_modules/defu/dist/defu.mjs";
 const _sfc_main = {
   __name: "error-500",
   __ssrInlineRender: true,
@@ -65,4 +65,4 @@ const error500 = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-a
 export {
   error500 as default
 };
-//# sourceMappingURL=error-500-z2IllWnK.js.map
+//# sourceMappingURL=error-500-J9kD2MT2.js.map

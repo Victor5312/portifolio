@@ -1,15 +1,15 @@
 import { defineComponent, shallowRef, h, resolveComponent, computed, unref, mergeProps, withCtx, createTextVNode, toDisplayString, useSSRContext } from "vue";
-import { parseQuery, hasProtocol, joinURL, isScriptProtocol, withTrailingSlash, withoutTrailingSlash } from "C:/xampp/htdocs/portifolio-personalizado/node_modules/ufo/dist/index.mjs";
+import { parseQuery, hasProtocol, joinURL, isScriptProtocol, withTrailingSlash, withoutTrailingSlash } from "C:/xampp/htdocs/portifolio/node_modules/ufo/dist/index.mjs";
 import { u as useRouter, e as encodeRoutePath, r as resolveRouteObject, n as navigateTo, a as useNuxtApp, b as useRuntimeConfig, c as nuxtLinkDefaults } from "../server.mjs";
 import { ssrRenderAttrs, ssrInterpolate, ssrRenderComponent } from "vue/server-renderer";
-import { _ as _export_sfc, u as useHead } from "./_plugin-vue_export-helper-DER_p-Zg.js";
-import "C:/xampp/htdocs/portifolio-personalizado/node_modules/ofetch/dist/node.mjs";
+import { _ as _export_sfc, u as useHead } from "./_plugin-vue_export-helper-DZKcESW7.js";
+import "C:/xampp/htdocs/portifolio/node_modules/ofetch/dist/node.mjs";
 import "#internal/nuxt/paths";
-import "C:/xampp/htdocs/portifolio-personalizado/node_modules/hookable/dist/index.mjs";
-import "C:/xampp/htdocs/portifolio-personalizado/node_modules/unctx/dist/index.mjs";
-import "C:/xampp/htdocs/portifolio-personalizado/node_modules/h3/dist/index.mjs";
-import "C:/xampp/htdocs/portifolio-personalizado/node_modules/defu/dist/defu.mjs";
-import "C:/xampp/htdocs/portifolio-personalizado/node_modules/@unhead/vue/dist/index.mjs";
+import "C:/xampp/htdocs/portifolio/node_modules/hookable/dist/index.mjs";
+import "C:/xampp/htdocs/portifolio/node_modules/unctx/dist/index.mjs";
+import "C:/xampp/htdocs/portifolio/node_modules/h3/dist/index.mjs";
+import "C:/xampp/htdocs/portifolio/node_modules/defu/dist/defu.mjs";
+import "C:/xampp/htdocs/portifolio/node_modules/@unhead/vue/dist/index.mjs";
 const firstNonUndefined = (...args) => args.find((arg) => arg !== void 0);
 function sanitizeExternalHref(value) {
   let candidate = value.replace(/[\u0000-\u001f\s]+/g, "");
@@ -388,4 +388,4 @@ const error404 = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-1
 export {
   error404 as default
 };
-//# sourceMappingURL=error-404-CdcHPaOJ.js.map
+//# sourceMappingURL=error-404-Cky2T_uI.js.map

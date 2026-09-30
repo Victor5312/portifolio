@@ -230,11 +230,11 @@ onBeforeUnmount(() => context?.revert());
             ><span>ROLE PARA CAMINHAR. MOVA O MOUSE PARA EXPLORAR.</span>
           </div>
           <h1 class="titulo-abertura">
-            <span>Tem que ver </span
+            <span>Um pouco</span
             ><span class="segunda-linha"
-              ><em>oque.</em
+              ><em>do que</em
               ><span class="asterisco-titulo" aria-hidden="true">✳</span></span
-            ><span>Colocar <em>aqui.</em></span>
+            ><span>eu <em>faço.</em></span>
           </h1>
           <div
             class="mensagem-percurso"
@@ -253,15 +253,15 @@ onBeforeUnmount(() => context?.revert());
                     : "04 / NOVOS ÂNGULOS"
             }}</span>
             <h2 v-if="progressoCampo < 0.58">
-              Tem que <br />ver <em>Aqui tambem.</em>
+              Fique à vontade.<br /><em>A casa é sua.</em>
             </h2>
             <h2 v-else-if="progressoCampo < 0.7">
-              Tem que<br />ver <em>Aqui tambem.</em>
+              Pode ir<br /><em>sem pressa.</em>
             </h2>
             <h2 v-else-if="progressoCampo < 0.83">
-              Tem que<br />ver <em>Aqui tambem.</em>
+              De longe,<br /><em>tudo muda.</em>
             </h2>
-            <h2 v-else>Tem que<br />ver <em>Aqui tambem.</em></h2>
+            <h2 v-else>Agora, vamos<br /><em>aos projetos.</em></h2>
           </div>
           <div class="controles-percurso">
             <span
@@ -326,7 +326,7 @@ onBeforeUnmount(() => context?.revert());
           ><span>AS FERRAMENTAS. AS POSSIBILIDADES.</span>
         </div>
         <div class="cabecalho-secao">
-          <h2>Minha base.<br /><em>Minha base.</em></h2>
+          <h2>O que uso<br /><em>para criar.</em></h2>
           <p>
             Da estrutura visual à lógica de negócio.<br />Tecnologias que fazem
             parte do meu universo.

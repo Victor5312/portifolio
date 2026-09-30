@@ -1,5 +1,5 @@
 import { hasInjectionContext, inject } from "vue";
-import { useHead as useHead$1, headSymbol } from "C:/xampp/htdocs/portifolio-personalizado/node_modules/@unhead/vue/dist/index.mjs";
+import { useHead as useHead$1, headSymbol } from "C:/xampp/htdocs/portifolio/node_modules/@unhead/vue/dist/index.mjs";
 import { t as tryUseNuxtApp } from "../server.mjs";
 function injectHead(nuxtApp) {
   const nuxt = nuxtApp || tryUseNuxtApp();
@@ -26,4 +26,4 @@ export {
   _export_sfc as _,
   useHead as u
 };
-//# sourceMappingURL=_plugin-vue_export-helper-DER_p-Zg.js.map
+//# sourceMappingURL=_plugin-vue_export-helper-DZKcESW7.js.map

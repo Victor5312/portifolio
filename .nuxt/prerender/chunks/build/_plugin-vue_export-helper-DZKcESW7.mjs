@@ -1,4 +1,4 @@
-import { hasInjectionContext, inject } from 'file://C:/xampp/htdocs/portifolio-personalizado/node_modules/vue/index.mjs';
+import { hasInjectionContext, inject } from 'file://C:/xampp/htdocs/portifolio/node_modules/vue/index.mjs';
 import { t as tryUseNuxtApp } from './server.mjs';
 import { u as useHead$1, h as headSymbol } from '../_/renderer.mjs';
 
@@ -26,4 +26,4 @@ const _export_sfc = (sfc, props) => {
 };
 
 export { _export_sfc as _, useHead as u };
-//# sourceMappingURL=_plugin-vue_export-helper-DER_p-Zg.mjs.map
+//# sourceMappingURL=_plugin-vue_export-helper-DZKcESW7.mjs.map
