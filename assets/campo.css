@@ -70,6 +70,7 @@
 }
 .mensagem-percurso {
   position: absolute;
+  z-index: 3;
   left: 4%;
   bottom: 180px;
   opacity: 0;
@@ -166,8 +167,9 @@
   inset: 0;
   width: 100%;
   height: 100%;
-  z-index: -2;
+  z-index: 0;
   opacity: 1;
+  pointer-events: none;
 }
 .arte-abertura::after {
   content: "";
@@ -189,6 +191,7 @@
 }
 .introducao-abertura {
   position: absolute;
+  z-index: 2;
   top: 143px;
   left: 4%;
   right: 4%;
@@ -209,6 +212,8 @@
   box-shadow: 0 0 14px #c0f394;
 }
 .titulo-abertura {
+  position: relative;
+  z-index: 2;
   font-family: "Instrument Serif", Georgia, serif;
   font-weight: 400;
   font-size: clamp(64px, 7.1vw, 112px);
@@ -230,6 +235,7 @@
   margin-left: 20px;
 }
 .legenda-arte {
+  z-index: 2;
   top: auto;
   bottom: 190px;
   right: 4%;

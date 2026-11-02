@@ -100,7 +100,7 @@ export function criarClareira(cena, guardar, tempo, vento) {
     copa.setColorAt(i, cor);
   }
   grupo.add(copa);
-  const quantidade = window.innerWidth < 650 ? 600 : 1200;
+  const quantidade = window.innerWidth < 650 ? 850 : 1600;
   const geometriaPetala = guardar(new THREE.SphereGeometry(1, 7, 4));
   const materialPetala = guardar(
     new THREE.MeshStandardMaterial({
@@ -152,28 +152,32 @@ export function criarClareira(cena, guardar, tempo, vento) {
       Math.abs(x - margemRio(z - 150)) <
       2.8 + Math.sin((z - 150) * 0.09) * 0.8
     );
-    const altura = 0.3 + aleatorio() * 0.5;
+    const altura = 0.45 + aleatorio() * 0.5;
     auxiliar.position.set(x, altura / 2, z);
     auxiliar.rotation.set(0, 0, 0);
     auxiliar.scale.set(1, altura, 1);
     auxiliar.updateMatrix();
     hastes.setMatrixAt(i, auxiliar.matrix);
     auxiliar.position.y = altura;
-    auxiliar.scale.set(0.065, 0.045, 0.065);
+    auxiliar.scale.set(0.1, 0.07, 0.1);
     auxiliar.updateMatrix();
     miolos.setMatrixAt(i, auxiliar.matrix);
     for (let j = 0; j < 6; j++) {
       const a = (j / 6) * Math.PI * 2;
       auxiliar.position.set(
-        x + Math.cos(a) * 0.12,
+        x + Math.cos(a) * 0.18,
         altura,
-        z + Math.sin(a) * 0.12,
+        z + Math.sin(a) * 0.18,
       );
       auxiliar.rotation.set(0, -a, 0);
-      auxiliar.scale.set(0.16, 0.025, 0.055);
+      auxiliar.scale.set(0.26, 0.045, 0.08);
       auxiliar.updateMatrix();
       petalas.setMatrixAt(i * 6 + j, auxiliar.matrix);
-      cor.set(i % 4 === 0 ? "#e0edb3" : "#fffdf2");
+      cor.set(
+        ["#fffdf2", "#fffdf2", "#f4d27b", "#fffdf2", "#eab4a6", "#d9d4ed"][
+          i % 6
+        ],
+      );
       petalas.setColorAt(i * 6 + j, cor);
     }
   }
