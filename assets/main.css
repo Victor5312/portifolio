@@ -317,6 +317,120 @@ footer {
   line-height: 1;
   color: #7db48b;
 }
+.profile-card-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 320px;
+}
+.profile-card-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 320px;
+}
+.profileCard_container {
+  position: relative;
+  box-sizing: border-box;
+  width: 280px;
+  height: 280px;
+  padding: 40px;
+  border: 2px dashed #9ca3af80;
+  border-radius: 50%;
+}
+.profile_item {
+  position: absolute;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+  width: 48px;
+  height: 48px;
+  padding: 2px;
+  border: 1px solid #9ca3af80;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+  transition: transform 0.5s;
+}
+.profile_item:hover,
+.profile_item:active {
+  transform: scale(0.95);
+}
+.profile_item > span {
+  display: block;
+  width: 40px;
+  height: 40px;
+  padding: 4px;
+  border-radius: 50%;
+  background: #fff;
+}
+.profile_item svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.profileCard_container > .profile_item:nth-child(1) {
+  top: -4px;
+  left: 45px;
+}
+.profileCard_container > .profile_item:nth-child(2) {
+  top: -4px;
+  right: 45px;
+}
+.profileCard_container > .profile_item:nth-child(3) {
+  top: 80px;
+  left: -16px;
+}
+.profileCard_container > .profile_item:nth-child(4) {
+  top: 80px;
+  right: -16px;
+}
+.profileCard_container > .profile_item:nth-child(5) {
+  bottom: 32px;
+  left: 0;
+}
+.profileCard_container > .profile_item:nth-child(6) {
+  right: 0;
+  bottom: 32px;
+}
+.profileCard_container > .profile_item:nth-child(7) {
+  right: 40%;
+  bottom: -16px;
+}
+.profileCard_container > .profile_item:nth-child(8) {
+  top: 50%;
+  left: 50%;
+  z-index: 0;
+  width: 200px;
+  height: 200px;
+  padding: 4px;
+  border-width: 2px;
+  transform: translate(-50%, -50%);
+}
+.profileCard_container > .profile_item:nth-child(8) > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 8px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.5s;
+}
+.profileCard_container > .profile_item:nth-child(8):hover > div,
+.profileCard_container > .profile_item:nth-child(8):active > div {
+  transform: scale(0.95);
+}
+.profileCard_container > .profile_item:nth-child(8) > div > span {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
 .sobre h2,
 .cabecalho-secao h2,
 .conteudo-construcao h2 {
@@ -1026,7 +1140,14 @@ footer {
     gap: 8px;
   }
   .composicao-sobre {
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: minmax(240px, 1fr) minmax(0, 2fr);
+    gap: 24px;
+  }
+  .profile-card-area {
+    min-height: 300px;
+  }
+  .profile-card-stage {
+    height: 300px;
   }
   .texto-sobre {
     gap: 25px;

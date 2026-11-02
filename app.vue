@@ -222,7 +222,101 @@ onBeforeUnmount(() => context?.revert());
           <span>01 / SOBRE MIM</span><span>UM POUCO SOBRE MEU TRABALHO</span>
         </div>
         <div class="composicao-sobre">
-          <div class="simbolo-sobre" aria-hidden="true">↳</div>
+          <div class="profile-card-area" aria-hidden="true">
+            <div class="profile-card-stage">
+              <div class="profileCard_container">
+                <button
+                  class="profile_item left-[45px] -top-[4px] absolute rounded-full bg-cover cursor-pointer border border-gray-400/50 p-[2px] active:scale-95 hover:scale-95 transition-all duration-500"
+                >
+                  <span
+                    class="block w-[40px] h-[40px] transition-all duration-500 rounded-full z-[2] bg-white p-1"
+                  >
+                    <svg viewBox="0 0 64 64" role="img" aria-label="PHP"><rect width="64" height="64" rx="12" fill="#777bb3"/><text x="32" y="40" text-anchor="middle" font-family="Arial,sans-serif" font-size="25" font-weight="700" fill="#fff">php</text></svg>
+                  </span>
+                </button>
+
+                <button
+                  class="profile_item right-[45px] -top-[4px] absolute rounded-full bg-cover cursor-pointer border border-gray-400/50 p-[2px] active:scale-95 hover:scale-95 transition-all duration-500"
+                >
+                  <span
+                    class="block w-[40px] h-[40px] transition-all duration-500 rounded-full z-[2] bg-white p-1"
+                  >
+                    <svg viewBox="0 0 64 64" role="img" aria-label="Python"><path fill="#3776ab" d="M31 5c-13 0-12 6-12 6v9h13v3H14S5 22 5 34s8 11 8 11h6v-8s0-9 9-9h15s8 0 8-8V14s1-9-20-9zm-7 7a3 3 0 110 6 3 3 0 010-6z"/><path fill="#ffd43b" d="M33 59c13 0 12-6 12-6v-9H32v-3h18s9 1 9-11-8-11-8-11h-6v8s0 9-9 9H21s-8 0-8 8v6s-1 9 20 9zm7-7a3 3 0 110-6 3 3 0 010 6z"/></svg>
+                  </span>
+                </button>
+
+                <button
+                  class="profile_item -left-4 top-20 absolute rounded-full bg-cover cursor-pointer border border-gray-400/50 p-[2px] active:scale-95 hover:scale-95 transition-all duration-500"
+                >
+                  <span
+                    class="block w-[40px] h-[40px] transition-all duration-500 rounded-full z-[2] bg-white p-1"
+                  >
+                    <svg viewBox="0 0 64 64" role="img" aria-label="Django"><path fill="#092e20" d="M16 8h12v39c-4 1-7 2-12 2C7 49 3 45 3 37s5-13 14-13h2V8zm3 21h-2c-4 0-6 2-6 7 0 4 2 6 5 6h3V29zm26-7H33V8h12v14zm0 5v24c0 8-1 12-5 16-3 3-8 5-15 7l-5-9c5-2 8-3 10-6 2-2 3-5 3-10V27h12z"/></svg>
+                  </span>
+                </button>
+
+                <button
+                  class="profile_item -right-4 top-20 absolute rounded-full bg-cover cursor-pointer border border-gray-400/50 p-[2px] active:scale-95 hover:scale-95 transition-all duration-500"
+                >
+                  <span
+                    class="block w-[40px] h-[40px] transition-all duration-500 rounded-full z-[2] bg-white p-1"
+                  >
+                    <svg viewBox="0 0 64 64" role="img" aria-label="Flask"><path fill="#222" d="M25 5h14v4h-3v15l17 27c3 5 0 9-6 9H17c-6 0-9-4-6-9l17-27V9h-3V5zm6 23L18 49h28L33 28v-4h-2v4z"/><path fill="#fff" d="M22 43h20l4 6H18z"/></svg>
+                  </span>
+                </button>
+
+                <button
+                  class="profile_item bottom-8 -left-0 absolute rounded-full bg-cover cursor-pointer border border-gray-400/50 p-[2px] active:scale-95 hover:scale-95 transition-all duration-500"
+                >
+                  <span
+                    class="block w-[40px] h-[40px] transition-all duration-500 rounded-full z-[2] bg-white p-1"
+                  >
+                    <svg viewBox="0 0 64 64" role="img" aria-label="MySQL"><path fill="#00758f" d="M8 45c7-2 11-9 15-15 4-7 8-12 14-11 5 1 7 6 10 10 2 3 4 5 9 5v4c-7 0-11-3-14-7-3-4-4-7-7-7-4-1-7 4-10 9-5 8-10 15-20 16z"/><path fill="#f29111" d="M33 20c7-5 16-3 21 4l-3 2c-4-5-10-6-15-3z"/></svg>
+                  </span>
+                </button>
+
+                <button
+                  class="profile_item bottom-8 -right-0 absolute rounded-full bg-cover cursor-pointer border border-gray-400/50 p-[2px] active:scale-95 hover:scale-95 transition-all duration-500"
+                >
+                  <span
+                    class="block w-[40px] h-[40px] transition-all duration-500 rounded-full z-[2] bg-white p-1"
+                  >
+                    <svg viewBox="0 0 64 64" role="img" aria-label="JavaScript"><rect width="64" height="64" rx="8" fill="#f7df1e"/><text x="44" y="51" text-anchor="end" font-family="Arial,sans-serif" font-size="32" font-weight="700" fill="#111">JS</text></svg>
+                  </span>
+                </button>
+
+                <button
+                  class="profile_item right-[40%] -bottom-4 absolute rounded-full bg-cover cursor-pointer border border-gray-400/50 p-[2px] active:scale-95 hover:scale-95 transition-all duration-500"
+                >
+                  <span
+                    class="block w-[40px] h-[40px] transition-all duration-500 rounded-full z-[2] bg-white p-1"
+                  >
+                    <svg viewBox="0 0 64 64" role="img" aria-label="PostgreSQL"><path fill="#336791" d="M32 5c-11 0-20 7-20 20 0 9 4 15 10 18l-1 9 8-5c2 1 5 1 8 1 12 0 19-8 19-21S47 5 32 5zm-8 17a3 3 0 110 6 3 3 0 010-6zm17 0a3 3 0 110 6 3 3 0 010-6zm-16 12c5 5 11 5 16 0l3 3c-7 8-16 8-23 0z"/><path fill="none" stroke="#336791" stroke-width="3" d="M13 23c-6-1-8 2-7 6 1 3 5 3 8 2m37-8c6-1 8 2 7 6-1 3-5 3-8 2"/></svg>
+                  </span>
+                </button>
+
+                <button
+                  class="profile_item w-[200px] h-[200px] p-1 border-2 rounded-full hover:border-gray-400/50 cursor-pointer transition-all duration-500 z-0"
+                >
+                  <div
+                    class="w-full bg-white h-full flex items-center justify-center p-2 rounded-full active:scale-95 hover:scale-95 object-cover transition-all duration-500"
+                  >
+                    <span class="w-20 h-20 inline-block">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          d="M9.99296258,10.5729355 C12.478244,10.5729355 14.4929626,8.55821687 14.4929626,6.0729355 C14.4929626,3.58765413 12.478244,1.5729355 9.99296258,1.5729355 C7.5076812,1.5729355 5.49296258,3.58765413 5.49296258,6.0729355 C5.49296258,8.55821687 7.5076812,10.5729355 9.99296258,10.5729355 Z M10,0 C13.3137085,0 16,2.6862915 16,6 C16,8.20431134 14.8113051,10.1309881 13.0399615,11.173984 C16.7275333,12.2833441 19.4976819,15.3924771 19.9947005,19.2523727 C20.0418583,19.6186047 19.7690435,19.9519836 19.3853517,19.9969955 C19.0016598,20.0420074 18.6523872,19.7816071 18.6052294,19.4153751 C18.0656064,15.2246108 14.4363723,12.0699838 10.034634,12.0699838 C5.6099956,12.0699838 1.93381693,15.231487 1.39476476,19.4154211 C1.34758036,19.7816499 0.998288773,20.0420271 0.614600177,19.9969899 C0.230911582,19.9519526 -0.0418789616,19.6185555 0.00530544566,19.2523267 C0.500630192,15.4077896 3.28612316,12.3043229 6.97954305,11.1838052 C5.19718955,10.1447285 4,8.21217353 4,6 C4,2.6862915 6.6862915,0 10,0 Z"
+                          fill="#555"
+                        ></path>
+                      </svg>
+                    </span>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
           <div>
             <h2>Entre sites<br />e <em>sistemas.</em></h2>
             <div class="texto-sobre">
@@ -317,7 +411,7 @@ onBeforeUnmount(() => context?.revert());
             :class="{ ativo: selectedFilter === 'Todas' }"
             @click="selectedFilter = 'Todas'"
           >
-            Todas<span>08</span>
+            Todas<span>09</span>
           </button>
           <button
             :aria-pressed="selectedFilter === 'Front-end'"
@@ -405,6 +499,17 @@ onBeforeUnmount(() => context?.revert());
             <span class="seta-tecnologia" aria-hidden="true">↗</span>
           </article>
           <article
+            v-show="selectedFilter === 'Todas' || selectedFilter === 'Banco de dados'"
+            class="cartao-tecnologia"
+          >
+            <div class="topo-tecnologia">
+              <span class="simbolo-tecnologia">Pg</span
+              ><span class="categoria-tecnologia">BANCO DE DADOS</span>
+            </div>
+            <h3>PostgreSQL</h3>
+            <p>Dados &amp; consultas relacionais</p>
+            <span class="seta-tecnologia" aria-hidden="true">↗</span>
+          </article>          <article
             v-show="
               selectedFilter === 'Todas' || selectedFilter === 'Front-end'
             "
