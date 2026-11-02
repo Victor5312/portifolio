@@ -39,18 +39,18 @@ O repositório atualmente versiona `node_modules` e arquivos de construção. Em
 
 ## Conteúdo pessoal
 
-Os dados ficam em `data/perfil.ts`. Nome e tecnologias foram baseados nas informações disponíveis. A apresentação é um texto editorial editável; não foram adicionados formação, tempo de experiência, clientes ou resultados não confirmados.
+Os textos da página e as imagens usadas nas marcas e nos projetos ficam no template `app.vue`. O conteúdo não inclui formação, tempo de experiência, clientes ou resultados não confirmados.
 
-E-mail, GitHub e LinkedIn só aparecem quando preenchidos. Até lá, o botão de contato permite salvar uma ideia em um arquivo local e informa claramente que nenhuma mensagem foi enviada.
+O botão de contato permite salvar uma ideia em um arquivo local e informa claramente que nenhuma mensagem foi enviada.
 
-A seção de projetos apresenta trabalhos informados pelo Victor e conferidos nos arquivos locais: PersonalFit (`personalfit`), Alfred (`alfred`), RajaHub (`rajahub`) e Gostiki (`gostiki`). A presença do Alfred em 27 cidades foi informada pelo Victor. O card do RajaHub usa uma captura real da página inicial pública, salva em `assets/projetos/rajahub.png`; os demais usam capas gráficas. As descrições não atribuem autoria exclusiva. Os projetos de origem foram apenas consultados; nenhum dado de usuários ou credencial foi copiado.
+A seção de projetos apresenta trabalhos informados pelo Victor e conferidos nos arquivos locais: PersonalFit (`personalfit`), Alfred (`alfred`), RajaHub (`rajahub`) e Gostiki (`gostiki`). A presença do Alfred em 27 cidades foi informada pelo Victor. O card do RajaHub usa uma captura real da página inicial pública, embutida no `app.vue`; os demais usam capas gráficas. As descrições não atribuem autoria exclusiva. Os projetos de origem foram apenas consultados; nenhum dado de usuários ou credencial foi copiado.
 
 ## Tecnologias
 
-A faixa de marcas usa as logos públicas de Alfred, RajaHub e Gostiki, guardadas em `assets/marcas` e exibidas em escala de cinza. PersonalFit aparece apenas como nome. Fontes: `https://alfredsistemas.com.br/assets/img/logo-alfred.png`, `https://rajahub.com.br/wp-content/uploads/2025/01/logo-Photoroom.png` e `https://gostiki.com.br/img/logo.png`. O movimento pode ser pausado e respeita a preferência por movimento reduzido.
+A faixa de marcas usa as logos públicas de Alfred, RajaHub e Gostiki, embutidas no `app.vue` e exibidas em escala de cinza. PersonalFit aparece apenas como nome. Fontes: `https://alfredsistemas.com.br/assets/img/logo-alfred.png`, `https://rajahub.com.br/wp-content/uploads/2025/01/logo-Photoroom.png` e `https://gostiki.com.br/img/logo.png`. O movimento pode ser pausado e respeita a preferência por movimento reduzido.
 
 - Construção: Nuxt, Vue, JavaScript, HTML, CSS, GSAP, Three.js e WebGL.
-- Tecnologias apresentadas no perfil: PHP, Python, Flask, Django, MySQL, JavaScript, HTML e CSS.
+- Tecnologias apresentadas na página: PHP, Python, Flask, Django, MySQL, JavaScript, HTML e CSS.
 - PHP, Python e MySQL não são dependências de execução deste site estático.
 
 Os nomes de classes e IDs próprios estão em português. Os nomes reservados das bibliotecas seguem suas APIs.
