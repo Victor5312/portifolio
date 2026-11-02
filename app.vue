@@ -7,12 +7,6 @@ import rajaLogo from "./assets/marcas/raja.png";
 import gostikiLogo from "./assets/marcas/gostiki.png";
 
 const logosPaused = ref(false);
-const brands = [
-  { name: "Alfred", image: alfredLogo },
-  { name: "RajaHub", image: rajaLogo, invert: true },
-  { name: "Gostiki", image: gostikiLogo },
-  { name: "PersonalFit" },
-];
 
 const menuOpen = ref(false);
 const dark = ref(false);
@@ -24,128 +18,6 @@ const dialog = ref(null);
 const briefDialog = ref(null);
 const brief = ref("");
 const saved = ref(false);
-const filters = ["Todas", "Front-end", "Back-end", "Banco de dados"];
-const technologies = [
-  {
-    name: "PHP",
-    category: "Back-end",
-    label: "Aplicações & lógica de servidor",
-    mark: "<?>",
-  },
-  {
-    name: "Python",
-    category: "Back-end",
-    label: "Automação & desenvolvimento web",
-    mark: "Py",
-  },
-  {
-    name: "Flask",
-    category: "Back-end",
-    label: "APIs & aplicações leves",
-    mark: "Fl",
-  },
-  {
-    name: "Django",
-    category: "Back-end",
-    label: "Aplicações web estruturadas",
-    mark: "Dj",
-  },
-  {
-    name: "MySQL",
-    category: "Banco de dados",
-    label: "Dados & consultas relacionais",
-    mark: "My",
-  },
-  {
-    name: "JavaScript",
-    category: "Front-end",
-    label: "Interatividade & comportamento",
-    mark: "Js",
-  },
-  {
-    name: "HTML",
-    category: "Front-end",
-    label: "Estrutura & semântica",
-    mark: "</>",
-  },
-  {
-    name: "CSS",
-    category: "Front-end",
-    label: "Design & responsividade",
-    mark: "#",
-  },
-];
-const filtered = computed(() =>
-  technologies.filter(
-    (t) =>
-      selectedFilter.value === "Todas" || t.category === selectedFilter.value,
-  ),
-);
-const projects = [
-  {
-    id: "01",
-    name: "PersonalFit",
-    type: "SISTEMA WEB",
-    tags: "PHP · MYSQL · JAVASCRIPT",
-    class: "projeto-personalfit",
-    cover: "PersonalFit",
-    caption: "A rotina do treino, organizada.",
-    features: ["Alunos", "Treinos", "Avaliações"],
-    summary: "Gestão de alunos e treinos, com acesso para o personal e o aluno.",
-    title: "PersonalFit · Alunos e treinos",
-    description:
-      "Sistema com áreas separadas para personal e aluno. Reúne cadastro de alunos, montagem de treinos, agenda e avaliações físicas. O aluno pode consultar seus treinos e acompanhar o histórico. Também conta com uma API para acesso aos dados do aluno.",
-    stack: ["PHP", "MySQL", "JavaScript", "HTML", "CSS"],
-  },
-  {
-    id: "02",
-    name: "Alfred",
-    type: "SISTEMA HOSPITALAR",
-    tags: "PHP · MYSQL · JAVASCRIPT",
-    class: "projeto-alfred",
-    cover: "Alfred",
-    caption: "Presente em 27 cidades.",
-    features: ["Gestão hospitalar", "Atendimentos", "Agendas"],
-    summary: "Sistema hospitalar utilizado em 27 cidades, em cujo desenvolvimento participei.",
-    title: "Alfred · Gestão hospitalar",
-    description:
-      "Participei do desenvolvimento do Alfred, sistema hospitalar utilizado em 27 cidades. O sistema reúne recursos para organizar atendimentos, agendas e outras rotinas da saúde, com módulos para diferentes etapas da gestão hospitalar.",
-    stack: ["PHP", "MySQL", "JavaScript", "HTML", "CSS"],
-  },
-  {
-    id: "03",
-    name: "RajaHub",
-    type: "SITE INSTITUCIONAL",
-    tags: "WORDPRESS · PHP · JAVASCRIPT",
-    class: "projeto-raja",
-    cover: "RajaHub",
-    caption: "Empreendedorismo, tecnologia e inovação.",
-    features: ["Ventures", "Bizz", "Inc"],
-    image: rajaScreenshot,
-    imageAlt: "Página inicial do RajaHub, com navegação preta, detalhes verdes e apresentação sobre empreendedorismo, tecnologia e inovação.",
-    url: "https://rajahub.com.br/",
-    summary: "Site do RajaHub, que apresenta suas frentes de atuação e conecta empreendedores e investidores.",
-    title: "RajaHub · Site institucional",
-    description:
-      "Participei do desenvolvimento do site do RajaHub, voltado a empreendedorismo, tecnologia e inovação. O site apresenta as frentes de atuação do grupo e os caminhos para quem busca investimento ou quer investir. O projeto local utiliza WordPress, com templates em PHP e estilos próprios.",
-    stack: ["WordPress", "PHP", "JavaScript", "HTML", "CSS"],
-  },
-  {
-    id: "04",
-    name: "Gostiki",
-    type: "SISTEMA DE GESTÃO",
-    tags: "PHP · MYSQL · JAVASCRIPT",
-    class: "projeto-gostiki",
-    cover: "Gostiki",
-    caption: "Do balcão ao delivery.",
-    features: ["PDV", "Pedidos", "Impressão"],
-    summary: "Sistema para a Gostiki Açaí & Sorvete, com vendas, pedidos e gestão de lojas.",
-    title: "Gostiki · Vendas e operação",
-    description:
-      "Participei do desenvolvimento do sistema da Gostiki Açaí & Sorvete. O projeto reúne ponto de venda, mesas, delivery, cadastro de produtos e complementos, além da gestão de lojas e clientes. Também inclui recursos de integração com o iFood e impressão de comandas pelo Gostiki Print.",
-    stack: ["PHP", "MySQL", "JavaScript", "HTML", "CSS"],
-  },
-];
 function openProject(project) {
   selectedProject.value = project;
   nextTick(() => dialog.value.showModal());
@@ -245,19 +117,10 @@ onBeforeUnmount(() => context?.revert());
       class="navegacao-movel"
       aria-label="Navegação móvel"
     >
-      <a
-        v-for="(label, index) in [
-          'Sobre',
-          'Tecnologias',
-          'Projetos',
-          'Contato',
-        ]"
-        :key="label"
-        :href="'#' + label.toLowerCase()"
-        @click="closeMenu"
-        ><sup>0{{ index + 1 }}</sup
-        >{{ label }} ↗</a
-      >
+      <a href="#sobre" @click="closeMenu"><sup>01</sup>Sobre ↗</a>
+      <a href="#tecnologias" @click="closeMenu"><sup>02</sup>Tecnologias ↗</a>
+      <a href="#projetos" @click="closeMenu"><sup>03</sup>Projetos ↗</a>
+      <a href="#contato" @click="closeMenu"><sup>04</sup>Contato ↗</a>
     </nav>
 
     <main id="conteudo">
@@ -373,19 +236,54 @@ onBeforeUnmount(() => context?.revert());
         </div>
       </section>
 
-      <section id="marcas" class="faixa-marcas" aria-label="Marcas e projetos em que trabalhei">
+      <section
+        id="marcas"
+        class="faixa-marcas"
+        aria-label="Marcas e projetos em que trabalhei"
+      >
         <div class="cabecalho-marcas">
           <p>MARCAS E PROJETOS EM QUE TRABALHEI</p>
-          <button v-if="motion" @click="logosPaused = !logosPaused" :aria-pressed="logosPaused">
+          <button
+            v-if="motion"
+            @click="logosPaused = !logosPaused"
+            :aria-pressed="logosPaused"
+          >
             {{ logosPaused ? "Retomar faixa" : "Pausar faixa" }}
           </button>
         </div>
         <div class="janela-marcas">
           <div class="trilho-marcas" :class="{ pausado: logosPaused }">
-            <div v-for="copy in 2" :key="copy" class="grupo-marcas" :aria-hidden="copy === 2 ? 'true' : undefined">
-              <div v-for="brand in brands" :key="brand.name" class="marca-projeto">
-                <img v-if="brand.image" :src="brand.image" :alt="brand.name" :class="{ invertida: brand.invert }" loading="lazy" />
-                <span v-else class="marca-tipografica">{{ brand.name }}</span>
+            <div class="grupo-marcas">
+              <div class="marca-projeto">
+                <img :src="alfredLogo" alt="Alfred" loading="lazy" />
+              </div>
+              <div class="marca-projeto">
+                <img
+                  :src="rajaLogo"
+                  alt="RajaHub"
+                  class="invertida"
+                  loading="lazy"
+                />
+              </div>
+              <div class="marca-projeto">
+                <img :src="gostikiLogo" alt="Gostiki" loading="lazy" />
+              </div>
+              <div class="marca-projeto">
+                <span class="marca-tipografica">PersonalFit</span>
+              </div>
+            </div>
+            <div class="grupo-marcas" aria-hidden="true">
+              <div class="marca-projeto">
+                <img :src="alfredLogo" alt="" loading="lazy" />
+              </div>
+              <div class="marca-projeto">
+                <img :src="rajaLogo" alt="" class="invertida" loading="lazy" />
+              </div>
+              <div class="marca-projeto">
+                <img :src="gostikiLogo" alt="" loading="lazy" />
+              </div>
+              <div class="marca-projeto">
+                <span class="marca-tipografica">PersonalFit</span>
               </div>
             </div>
           </div>
@@ -400,33 +298,143 @@ onBeforeUnmount(() => context?.revert());
         <div class="cabecalho-secao">
           <h2>O que uso<br /><em>para criar.</em></h2>
           <p>
-            Da tela ao banco de dados.<br />Estas são as tecnologias que uso
-            nos meus projetos.
+            Da tela ao banco de dados.<br />Estas são as tecnologias que uso nos
+            meus projetos.
           </p>
         </div>
         <div class="filtros" role="group" aria-label="Filtrar tecnologias">
           <button
-            v-for="filter in filters"
-            :key="filter"
-            :aria-pressed="selectedFilter === filter"
-            :class="{ ativo: selectedFilter === filter }"
-            @click="selectedFilter = filter"
+            :aria-pressed="selectedFilter === 'Todas'"
+            :class="{ ativo: selectedFilter === 'Todas' }"
+            @click="selectedFilter = 'Todas'"
           >
-            {{ filter }}<span v-if="filter === 'Todas'">08</span>
+            Todas<span>08</span>
+          </button>
+          <button
+            :aria-pressed="selectedFilter === 'Front-end'"
+            :class="{ ativo: selectedFilter === 'Front-end' }"
+            @click="selectedFilter = 'Front-end'"
+          >
+            Front-end
+          </button>
+          <button
+            :aria-pressed="selectedFilter === 'Back-end'"
+            :class="{ ativo: selectedFilter === 'Back-end' }"
+            @click="selectedFilter = 'Back-end'"
+          >
+            Back-end
+          </button>
+          <button
+            :aria-pressed="selectedFilter === 'Banco de dados'"
+            :class="{ ativo: selectedFilter === 'Banco de dados' }"
+            @click="selectedFilter = 'Banco de dados'"
+          >
+            Banco de dados
           </button>
         </div>
         <div class="grade-tecnologias">
           <article
-            v-for="(tech, index) in filtered"
-            :key="tech.name"
+            v-show="selectedFilter === 'Todas' || selectedFilter === 'Back-end'"
             class="cartao-tecnologia"
           >
             <div class="topo-tecnologia">
-              <span class="simbolo-tecnologia">{{ tech.mark }}</span
-              ><span class="categoria-tecnologia">{{ tech.category }}</span>
+              <span class="simbolo-tecnologia">&lt;?&gt;</span
+              ><span class="categoria-tecnologia">BACK-END</span>
             </div>
-            <h3>{{ tech.name }}</h3>
-            <p>{{ tech.label }}</p>
+            <h3>PHP</h3>
+            <p>Aplicações &amp; lógica de servidor</p>
+            <span class="seta-tecnologia" aria-hidden="true">↗</span>
+          </article>
+          <article
+            v-show="selectedFilter === 'Todas' || selectedFilter === 'Back-end'"
+            class="cartao-tecnologia"
+          >
+            <div class="topo-tecnologia">
+              <span class="simbolo-tecnologia">Py</span
+              ><span class="categoria-tecnologia">BACK-END</span>
+            </div>
+            <h3>Python</h3>
+            <p>Automação &amp; desenvolvimento web</p>
+            <span class="seta-tecnologia" aria-hidden="true">↗</span>
+          </article>
+          <article
+            v-show="selectedFilter === 'Todas' || selectedFilter === 'Back-end'"
+            class="cartao-tecnologia"
+          >
+            <div class="topo-tecnologia">
+              <span class="simbolo-tecnologia">Fl</span
+              ><span class="categoria-tecnologia">BACK-END</span>
+            </div>
+            <h3>Flask</h3>
+            <p>APIs &amp; aplicações leves</p>
+            <span class="seta-tecnologia" aria-hidden="true">↗</span>
+          </article>
+          <article
+            v-show="selectedFilter === 'Todas' || selectedFilter === 'Back-end'"
+            class="cartao-tecnologia"
+          >
+            <div class="topo-tecnologia">
+              <span class="simbolo-tecnologia">Dj</span
+              ><span class="categoria-tecnologia">BACK-END</span>
+            </div>
+            <h3>Django</h3>
+            <p>Aplicações web estruturadas</p>
+            <span class="seta-tecnologia" aria-hidden="true">↗</span>
+          </article>
+          <article
+            v-show="
+              selectedFilter === 'Todas' || selectedFilter === 'Banco de dados'
+            "
+            class="cartao-tecnologia"
+          >
+            <div class="topo-tecnologia">
+              <span class="simbolo-tecnologia">My</span
+              ><span class="categoria-tecnologia">BANCO DE DADOS</span>
+            </div>
+            <h3>MySQL</h3>
+            <p>Dados &amp; consultas relacionais</p>
+            <span class="seta-tecnologia" aria-hidden="true">↗</span>
+          </article>
+          <article
+            v-show="
+              selectedFilter === 'Todas' || selectedFilter === 'Front-end'
+            "
+            class="cartao-tecnologia"
+          >
+            <div class="topo-tecnologia">
+              <span class="simbolo-tecnologia">Js</span
+              ><span class="categoria-tecnologia">FRONT-END</span>
+            </div>
+            <h3>JavaScript</h3>
+            <p>Interatividade &amp; comportamento</p>
+            <span class="seta-tecnologia" aria-hidden="true">↗</span>
+          </article>
+          <article
+            v-show="
+              selectedFilter === 'Todas' || selectedFilter === 'Front-end'
+            "
+            class="cartao-tecnologia"
+          >
+            <div class="topo-tecnologia">
+              <span class="simbolo-tecnologia">&lt;/&gt;</span
+              ><span class="categoria-tecnologia">FRONT-END</span>
+            </div>
+            <h3>HTML</h3>
+            <p>Estrutura &amp; semântica</p>
+            <span class="seta-tecnologia" aria-hidden="true">↗</span>
+          </article>
+          <article
+            v-show="
+              selectedFilter === 'Todas' || selectedFilter === 'Front-end'
+            "
+            class="cartao-tecnologia"
+          >
+            <div class="topo-tecnologia">
+              <span class="simbolo-tecnologia">#</span
+              ><span class="categoria-tecnologia">FRONT-END</span>
+            </div>
+            <h3>CSS</h3>
+            <p>Design &amp; responsividade</p>
             <span class="seta-tecnologia" aria-hidden="true">↗</span>
           </article>
         </div>
@@ -434,8 +442,7 @@ onBeforeUnmount(() => context?.revert());
 
       <section id="projetos" class="projetos espacamento-secao">
         <div class="rotulo-secao">
-          <span>03 / PROJETOS</span
-          ><span>SITES E SISTEMAS</span>
+          <span>03 / PROJETOS</span><span>SITES E SISTEMAS</span>
         </div>
         <div class="cabecalho-secao">
           <h2>Alguns trabalhos<br />de que <em>fiz parte.</em></h2>
@@ -446,35 +453,119 @@ onBeforeUnmount(() => context?.revert());
         </div>
         <div class="grade-projetos">
           <button
-            v-for="project in projects"
-            :key="project.id"
             class="cartao-projeto"
-            @click="openProject(project)"
-            :aria-label="'Ver detalhes: ' + project.name"
+            @click="openProject('PersonalFit')"
+            aria-label="Ver detalhes: PersonalFit"
           >
-            <div class="visual-projeto" :class="project.class">
+            <div class="visual-projeto projeto-personalfit">
               <div class="topo-visual">
-                <span>V / {{ project.id }}</span
-                ><span>{{ project.type }}</span>
+                <span>V / 01</span><span>SISTEMA WEB</span>
               </div>
-              <div v-if="project.image" class="print-projeto">
-                <div class="barra-print" aria-hidden="true"><span>● ● ●</span> rajahub.com.br</div>
-                <img :src="project.image" :alt="project.imageAlt" loading="lazy" width="1265" height="712" />
-              </div>
-              <div v-else class="capa-projeto">
-                <span class="nome-capa">{{ project.cover }}</span>
-                <span class="legenda-capa">{{ project.caption }}</span>
+              <div class="capa-projeto">
+                <span class="nome-capa">PersonalFit</span
+                ><span class="legenda-capa"
+                  >A rotina do treino, organizada.</span
+                >
                 <div class="recursos-capa">
-                  <span v-for="feature in project.features" :key="feature">{{ feature }}</span>
+                  <span>Alunos</span><span>Treinos</span><span>Avaliações</span>
                 </div>
               </div>
               <span class="abrir-projeto">↗</span>
             </div>
             <div class="informacoes-projeto">
-              <h3>{{ project.name }}</h3>
-              <span>{{ project.tags }}</span>
+              <h3>PersonalFit</h3>
+              <span>PHP · MYSQL · JAVASCRIPT</span>
             </div>
-            <p class="resumo-projeto">{{ project.summary }}</p>
+            <p class="resumo-projeto">
+              Gestão de alunos e treinos, com acesso para o personal e o aluno.
+            </p>
+          </button>
+          <button
+            class="cartao-projeto"
+            @click="openProject('Alfred')"
+            aria-label="Ver detalhes: Alfred"
+          >
+            <div class="visual-projeto projeto-alfred">
+              <div class="topo-visual">
+                <span>V / 02</span><span>SISTEMA HOSPITALAR</span>
+              </div>
+              <div class="capa-projeto">
+                <span class="nome-capa">Alfred</span
+                ><span class="legenda-capa">Presente em 27 cidades.</span>
+                <div class="recursos-capa">
+                  <span>Gestão hospitalar</span><span>Atendimentos</span
+                  ><span>Agendas</span>
+                </div>
+              </div>
+              <span class="abrir-projeto">↗</span>
+            </div>
+            <div class="informacoes-projeto">
+              <h3>Alfred</h3>
+              <span>PHP · MYSQL · JAVASCRIPT</span>
+            </div>
+            <p class="resumo-projeto">
+              Sistema hospitalar utilizado em 27 cidades, em cujo
+              desenvolvimento participei.
+            </p>
+          </button>
+          <button
+            class="cartao-projeto"
+            @click="openProject('RajaHub')"
+            aria-label="Ver detalhes: RajaHub"
+          >
+            <div class="visual-projeto projeto-raja">
+              <div class="topo-visual">
+                <span>V / 03</span><span>SITE INSTITUCIONAL</span>
+              </div>
+              <div class="print-projeto">
+                <div class="barra-print" aria-hidden="true">
+                  <span>● ● ●</span> rajahub.com.br
+                </div>
+                <img
+                  :src="rajaScreenshot"
+                  alt="Página inicial do RajaHub, com navegação preta, detalhes verdes e apresentação sobre empreendedorismo, tecnologia e inovação."
+                  loading="lazy"
+                  width="1265"
+                  height="712"
+                />
+              </div>
+              <span class="abrir-projeto">↗</span>
+            </div>
+            <div class="informacoes-projeto">
+              <h3>RajaHub</h3>
+              <span>WORDPRESS · PHP · JAVASCRIPT</span>
+            </div>
+            <p class="resumo-projeto">
+              Site do RajaHub, que apresenta suas frentes de atuação e conecta
+              empreendedores e investidores.
+            </p>
+          </button>
+          <button
+            class="cartao-projeto"
+            @click="openProject('Gostiki')"
+            aria-label="Ver detalhes: Gostiki"
+          >
+            <div class="visual-projeto projeto-gostiki">
+              <div class="topo-visual">
+                <span>V / 04</span><span>SISTEMA DE GESTÃO</span>
+              </div>
+              <div class="capa-projeto">
+                <span class="nome-capa">Gostiki</span
+                ><span class="legenda-capa">Do balcão ao delivery.</span>
+                <div class="recursos-capa">
+                  <span>PDV</span><span>Pedidos</span><span>Impressão</span>
+                </div>
+              </div>
+              <span class="abrir-projeto">↗</span>
+            </div>
+            <div class="informacoes-projeto">
+              <h3>Gostiki</h3>
+              <span>PHP · MYSQL · JAVASCRIPT</span>
+            </div>
+            <p class="resumo-projeto">
+              Sistema para a Gostiki Açaí &amp; Sorvete, com vendas, pedidos e
+              gestão de lojas.
+            </p>
           </button>
         </div>
       </section>
@@ -488,20 +579,9 @@ onBeforeUnmount(() => context?.revert());
           <div>
             <p>A experiência que você está explorando foi construída com:</p>
             <div class="etiquetas-tecnologias">
-              <span
-                v-for="tech in [
-                  'Nuxt',
-                  'Vue',
-                  'JavaScript',
-                  'HTML',
-                  'CSS',
-                  'GSAP',
-                  'Three.js',
-                  'WebGL',
-                ]"
-                :key="tech"
-                >{{ tech }}</span
-              >
+              <span>Nuxt</span><span>Vue</span><span>JavaScript</span
+              ><span>HTML</span><span>CSS</span><span>GSAP</span
+              ><span>Three.js</span><span>WebGL</span>
             </div>
             <p class="nota-construcao">
               Nuxt & Vue na estrutura. GSAP no movimento.<br />Three.js & WebGL
@@ -581,7 +661,11 @@ onBeforeUnmount(() => context?.revert());
 
     <dialog
       ref="dialog"
-      :aria-label="selectedProject?.title || 'Detalhes do projeto'"
+      :aria-label="
+        selectedProject
+          ? 'Detalhes do projeto: ' + selectedProject
+          : 'Detalhes do projeto'
+      "
       class="janela-detalhes"
       @click="
         (e) => {
@@ -595,19 +679,80 @@ onBeforeUnmount(() => context?.revert());
           @click="dialog.close()"
           aria-label="Fechar detalhes"
         >
-          ✕</button
-        ><span class="sobretitulo"
-          >{{ selectedProject.type }} / {{ selectedProject.id }}</span
-        >
-        <h2>{{ selectedProject.title }}</h2>
-        <p>{{ selectedProject.description }}</p>
-        <img v-if="selectedProject.image" class="print-detalhes" :src="selectedProject.image" :alt="selectedProject.imageAlt" width="1265" height="712" />
-        <div class="etiquetas-tecnologias">
-          <span v-for="tech in selectedProject.stack" :key="tech">{{
-            tech
-          }}</span>
-        </div>
-        <a v-if="selectedProject.url" class="link-texto visitar-projeto" :href="selectedProject.url" target="_blank" rel="noopener noreferrer">Visitar site <span>↗</span></a>
+          ✕
+        </button>
+        <template v-if="selectedProject === 'PersonalFit'">
+          <span class="sobretitulo">SISTEMA WEB / 01</span>
+          <h2>PersonalFit · Alunos e treinos</h2>
+          <p>
+            Sistema com áreas separadas para personal e aluno. Reúne cadastro de
+            alunos, montagem de treinos, agenda e avaliações físicas. O aluno
+            pode consultar seus treinos e acompanhar o histórico. Também conta
+            com uma API para acesso aos dados do aluno.
+          </p>
+          <div class="etiquetas-tecnologias">
+            <span>PHP</span><span>MySQL</span><span>JavaScript</span
+            ><span>HTML</span><span>CSS</span>
+          </div>
+        </template>
+        <template v-else-if="selectedProject === 'Alfred'">
+          <span class="sobretitulo">SISTEMA HOSPITALAR / 02</span>
+          <h2>Alfred · Gestão hospitalar</h2>
+          <p>
+            Participei do desenvolvimento do Alfred, sistema hospitalar
+            utilizado em 27 cidades. O sistema reúne recursos para organizar
+            atendimentos, agendas e outras rotinas da saúde, com módulos para
+            diferentes etapas da gestão hospitalar.
+          </p>
+          <div class="etiquetas-tecnologias">
+            <span>PHP</span><span>MySQL</span><span>JavaScript</span
+            ><span>HTML</span><span>CSS</span>
+          </div>
+        </template>
+        <template v-else-if="selectedProject === 'RajaHub'">
+          <span class="sobretitulo">SITE INSTITUCIONAL / 03</span>
+          <h2>RajaHub · Site institucional</h2>
+          <p>
+            Participei do desenvolvimento do site do RajaHub, voltado a
+            empreendedorismo, tecnologia e inovação. O site apresenta as frentes
+            de atuação do grupo e os caminhos para quem busca investimento ou
+            quer investir. O projeto local utiliza WordPress, com templates em
+            PHP e estilos próprios.
+          </p>
+          <img
+            class="print-detalhes"
+            :src="rajaScreenshot"
+            alt="Página inicial do RajaHub, com navegação preta, detalhes verdes e apresentação sobre empreendedorismo, tecnologia e inovação."
+            width="1265"
+            height="712"
+          />
+          <div class="etiquetas-tecnologias">
+            <span>WordPress</span><span>PHP</span><span>JavaScript</span
+            ><span>HTML</span><span>CSS</span>
+          </div>
+          <a
+            class="link-texto visitar-projeto"
+            href="https://rajahub.com.br/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Visitar site <span>↗</span></a
+          >
+        </template>
+        <template v-else-if="selectedProject === 'Gostiki'">
+          <span class="sobretitulo">SISTEMA DE GESTÃO / 04</span>
+          <h2>Gostiki · Vendas e operação</h2>
+          <p>
+            Participei do desenvolvimento do sistema da Gostiki Açaí &amp;
+            Sorvete. O projeto reúne ponto de venda, mesas, delivery, cadastro
+            de produtos e complementos, além da gestão de lojas e clientes.
+            Também inclui recursos de integração com o iFood e impressão de
+            comandas pelo Gostiki Print.
+          </p>
+          <div class="etiquetas-tecnologias">
+            <span>PHP</span><span>MySQL</span><span>JavaScript</span
+            ><span>HTML</span><span>CSS</span>
+          </div>
+        </template>
         <button class="link-texto" @click="dialog.close()">
           Voltar aos projetos <span>↙</span>
         </button>
