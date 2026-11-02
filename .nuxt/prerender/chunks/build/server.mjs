@@ -774,7 +774,6 @@ const profile = {
   bio: "Sou o Victor, desenvolvedor web. Já trabalhei em sites para empresas e sistemas de gestão, cuidando tanto das telas quanto da lógica e do banco de dados. Aqui reuni alguns desses projetos para mostrar um pouco do que faço."
 };
 const rajaScreenshot = "" + __buildAssetsURL("rajahub.BPvnoCJd.png");
-const pbaLogo = "" + __buildAssetsURL("pba.wyuKTiXF.svg");
 const alfredLogo = "" + __buildAssetsURL("alfred.DO3Ix6WN.png");
 const rajaLogo = "" + __buildAssetsURL("raja.CFyN9aW7.png");
 const gostikiLogo = "" + __buildAssetsURL("gostiki.BaOO3HZY.png");
@@ -784,7 +783,6 @@ const _sfc_main$2 = {
   setup(__props) {
     const logosPaused = ref(false);
     const brands = [
-      { name: "PBA Contabilidade", image: pbaLogo, invert: true },
       { name: "Alfred", image: alfredLogo },
       { name: "RajaHub", image: rajaLogo, invert: true },
       { name: "Gostiki", image: gostikiLogo },
@@ -859,20 +857,6 @@ const _sfc_main$2 = {
     const projects = [
       {
         id: "01",
-        name: "PBA Contabilidade",
-        type: "SITE PARA EMPRESA",
-        tags: "HTML · CSS · JAVASCRIPT",
-        class: "projeto-pba",
-        cover: "PBA",
-        caption: "Contabilidade para cartórios",
-        features: ["Serviços", "Dúvidas frequentes", "Contato"],
-        summary: "Site da PBA voltado à contabilidade para cartórios.",
-        title: "PBA · Contabilidade para cartórios",
-        description: "Participei do desenvolvimento do site da PBA voltado a cartórios. A página apresenta os serviços, explica as etapas do atendimento e reúne dúvidas frequentes e formas de contato. O projeto combina HTML, CSS e JavaScript, com uma aplicação Flask para servir o site.",
-        stack: ["HTML", "CSS", "JavaScript", "Bootstrap", "Python", "Flask"]
-      },
-      {
-        id: "02",
         name: "PersonalFit",
         type: "SISTEMA WEB",
         tags: "PHP · MYSQL · JAVASCRIPT",
@@ -886,7 +870,7 @@ const _sfc_main$2 = {
         stack: ["PHP", "MySQL", "JavaScript", "HTML", "CSS"]
       },
       {
-        id: "03",
+        id: "02",
         name: "Alfred",
         type: "SISTEMA HOSPITALAR",
         tags: "PHP · MYSQL · JAVASCRIPT",
@@ -900,7 +884,7 @@ const _sfc_main$2 = {
         stack: ["PHP", "MySQL", "JavaScript", "HTML", "CSS"]
       },
       {
-        id: "04",
+        id: "03",
         name: "RajaHub",
         type: "SITE INSTITUCIONAL",
         tags: "WORDPRESS · PHP · JAVASCRIPT",
@@ -917,7 +901,7 @@ const _sfc_main$2 = {
         stack: ["WordPress", "PHP", "JavaScript", "HTML", "CSS"]
       },
       {
-        id: "05",
+        id: "04",
         name: "Gostiki",
         type: "SISTEMA DE GESTÃO",
         tags: "PHP · MYSQL · JAVASCRIPT",

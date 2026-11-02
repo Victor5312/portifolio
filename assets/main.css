@@ -551,11 +551,6 @@ footer {
 .cartao-projeto:hover .visual-projeto {
   border-radius: 30px;
 }
-.projeto-pba {
-  background: #191714;
-  color: #fff3e7;
-  --acento-projeto: #f08043;
-}
 .projeto-personalfit {
   background: #dceacb;
   color: #213829;
@@ -622,10 +617,6 @@ footer {
   line-height: 1.08;
   letter-spacing: -1.5px;
   overflow-wrap: anywhere;
-}
-.projeto-pba .nome-capa {
-  color: var(--acento-projeto);
-  font-size: clamp(64px, 7vw, 105px);
 }
 .legenda-capa {
   font-size: 15px;
