@@ -606,8 +606,8 @@ function _expandFromEnv(value) {
 
 const _inlineRuntimeConfig = {
   "app": {
-    "baseURL": "/portifolio/",
-    "buildId": "67442cf3-73ee-4331-9746-2c3f126a3996",
+    "baseURL": "/",
+    "buildId": "3914a1bf-cbe1-4844-bbce-35704874dc10",
     "buildAssetsDir": "/_nuxt/",
     "cdnURL": ""
   },
@@ -896,7 +896,7 @@ function defaultHandler(error, event, opts) {
   const statusMessage = error.statusMessage || "Server Error";
   const url = getRequestURL(event, { xForwardedHost: true, xForwardedProto: true });
   if (statusCode === 404) {
-    const baseURL = "/portifolio/";
+    const baseURL = "/";
     if (/^\/[^/]/.test(baseURL) && !url.pathname.startsWith(baseURL)) {
       const redirectTo = `${baseURL}${url.pathname.slice(1)}${url.search}`;
       return {

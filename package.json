@@ -6,6 +6,7 @@
     "dev": "nuxt dev --host 127.0.0.1",
     "build": "nuxt build",
     "generate": "nuxt generate",
+    "generate:vps": "node tools/generate-vps.mjs",
     "preview": "nuxt preview"
   },
   "dependencies": {

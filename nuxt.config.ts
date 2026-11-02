@@ -1,9 +1,13 @@
 const baseURL = process.env.NUXT_APP_BASE_URL || "/";
+const outputDir = process.env.NUXT_BUILD_OUTPUT_DIR || ".output";
 
 export default defineNuxtConfig({
   compatibilityDate: "2025-05-15",
   devtools: { enabled: false },
   telemetry: false,
+  nitro: {
+    output: { dir: outputDir },
+  },
   css: [
     "@fontsource-variable/dm-sans",
     "@fontsource/instrument-serif/latin-400.css",

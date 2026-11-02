@@ -122,7 +122,7 @@
         "./imports"
       ],
       "#app-manifest": [
-        "./manifest/meta/67442cf3-73ee-4331-9746-2c3f126a3996.json"
+        "./manifest/meta/3914a1bf-cbe1-4844-bbce-35704874dc10.json"
       ],
       "#components": [
         "./components"
@@ -172,6 +172,6 @@
   "exclude": [
     "../dist",
     "../.data",
-    "../.output"
+    "../.output-vps"
   ]
 }

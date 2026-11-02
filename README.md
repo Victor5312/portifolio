@@ -29,7 +29,7 @@ Acesse `http://127.0.0.1:3000/`.
 
 O domínio serve o projeto na raiz `/`. O container `portfolio_php` usa Apache, publica a porta `127.0.0.1:8100` e monta `/srv/apps/portfolio/src` em `/var/www/html` como somente leitura. O `.htaccess` serve a versão estática em `.output/public`; não é necessário Node ou MySQL para executar essa versão.
 
-Para gerar uma nova versão destinada à VPS, execute `npm ci` e `npm run generate` em um ambiente de construção com Node compatível com o `package-lock.json`, sem definir `NUXT_APP_BASE_URL` (ou com valor `/`). Publique o conteúdo gerado em `.output/public` junto do `.htaccess`. Apenas `git pull` não recompila o Nuxt: a saída gerada precisa acompanhar a publicação ou ser construída antes de servir a nova versão.
+Para gerar uma versão destinada à VPS sem afetar o preview local, execute `npm ci` e `npm run generate:vps` em um ambiente de construção com Node compatível com o `package-lock.json`. O comando usa a raiz `/` e grava a saída em `.output-vps/public`. Envie o conteúdo dessa pasta para `.output/public` no servidor, mantendo o `.htaccess` na raiz do projeto. Não envie a geração local de `/portifolio/`: ela aponta os scripts para o subcaminho local e impede que animações e recursos JavaScript carreguem na raiz do domínio. Apenas `git pull` não recompila o Nuxt: a saída gerada precisa acompanhar a publicação ou ser construída antes de servir a nova versão.
 
 O `.htaccess` também aceita os caminhos antigos `/portifolio-personalizado/`, usados pela versão que já estava gerada. Não adicione `RewriteBase /portifolio-personalizado/` na VPS.
 
