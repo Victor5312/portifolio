@@ -10,9 +10,27 @@ export function criarClareira(cena, guardar, tempo, vento) {
   const grupo = new THREE.Group();
   grupo.position.set(0, 0, -150);
   cena.add(grupo);
+  // A borda do gramado some aos poucos em vez de formar um disco recortado.
+  const gradiente = document.createElement("canvas");
+  gradiente.width = gradiente.height = 256;
+  const pintura = gradiente.getContext("2d");
+  const borda = pintura.createRadialGradient(128, 128, 40, 128, 128, 128);
+  borda.addColorStop(0, "#fff");
+  borda.addColorStop(0.62, "#fff");
+  borda.addColorStop(1, "#000");
+  pintura.fillStyle = borda;
+  pintura.fillRect(0, 0, 256, 256);
   const terreno = new THREE.Mesh(
-    guardar(new THREE.CircleGeometry(14, 80)),
-    guardar(new THREE.MeshStandardMaterial({ color: "#658244", roughness: 1 })),
+    guardar(new THREE.CircleGeometry(22, 80)),
+    guardar(
+      new THREE.MeshStandardMaterial({
+        color: "#658244",
+        roughness: 1,
+        transparent: true,
+        depthWrite: false,
+        alphaMap: guardar(new THREE.CanvasTexture(gradiente)),
+      }),
+    ),
   );
   terreno.rotation.x = -Math.PI / 2;
   terreno.position.y = -0.12;
@@ -68,17 +86,31 @@ export function criarClareira(cena, guardar, tempo, vento) {
   const geometriaCopa = guardar(new THREE.IcosahedronGeometry(1, 1));
   const materialCopa = guardar(
     new THREE.MeshStandardMaterial({
-      color: "#84a449",
+      color: "#9dbb57",
       roughness: 0.88,
       flatShading: true,
     }),
   );
+  materialCopa.onBeforeCompile = (shader) => {
+    shader.uniforms.tempo = tempo;
+    shader.uniforms.vento = vento;
+    shader.vertexShader =
+      "uniform float tempo; uniform float vento;\n" + shader.vertexShader;
+    shader.vertexShader = shader.vertexShader.replace(
+      "#include <begin_vertex>",
+      `#include <begin_vertex>
+      float fase=instanceMatrix[3].x*1.7+instanceMatrix[3].z*1.3+instanceMatrix[3].y;
+      transformed.x+=sin(tempo*1.3+fase)*.1+vento*.14;
+      transformed.y+=cos(tempo*1.1+fase)*.06;`,
+    );
+  };
+  const totalCopa = 1150;
   const copa = guardar(
-    new THREE.InstancedMesh(geometriaCopa, materialCopa, 480),
+    new THREE.InstancedMesh(geometriaCopa, materialCopa, totalCopa),
   );
   const auxiliar = new THREE.Object3D(),
     cor = new THREE.Color();
-  for (let i = 0; i < 480; i++) {
+  for (let i = 0; i < totalCopa; i++) {
     const centro = centros[i % centros.length];
     const angulo = aleatorio() * Math.PI * 2,
       raio = Math.sqrt(aleatorio()) * 2.2;
@@ -88,14 +120,14 @@ export function criarClareira(cena, guardar, tempo, vento) {
       centro.z + Math.sin(angulo) * raio,
     );
     auxiliar.rotation.set(aleatorio() * 3, aleatorio() * 3, aleatorio() * 3);
-    const escala = 0.35 + aleatorio() * 0.65;
-    auxiliar.scale.set(escala, escala * 0.65, escala);
+    const escala = 0.2 + aleatorio() * 0.42;
+    auxiliar.scale.set(escala, escala * 0.72, escala);
     auxiliar.updateMatrix();
     copa.setMatrixAt(i, auxiliar.matrix);
     cor.setHSL(
       0.22 + aleatorio() * 0.075,
       0.37 + aleatorio() * 0.2,
-      0.2 + aleatorio() * 0.18,
+      0.16 + aleatorio() * 0.14 + (auxiliar.position.y - 5) * 0.03,
     );
     copa.setColorAt(i, cor);
   }

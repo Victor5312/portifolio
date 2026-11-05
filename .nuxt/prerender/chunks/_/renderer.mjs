@@ -85,7 +85,7 @@ function createHead(options = {}) {
 
 const NUXT_PAYLOAD_EXTRACTION = true;
 
-const appHead = {"meta":[{"name":"viewport","content":"width=device-width, initial-scale=1"},{"charset":"utf-8"},{"name":"description","content":"Portfólio de Victor. Desenvolvimento web, interfaces e experiências digitais. PHP, Python, Flask, Django, MySQL e JavaScript."}],"link":[{"rel":"icon","type":"image/svg+xml","href":"/favicon.svg"}],"style":[],"script":[],"noscript":[],"htmlAttrs":{"lang":"pt-BR"},"title":"Victor — Código com intenção."};
+const appHead = {"meta":[{"name":"viewport","content":"width=device-width, initial-scale=1"},{"charset":"utf-8"},{"name":"description","content":"Portfólio de Victor, desenvolvedor web. Sites e sistemas com PHP, Python, Flask, Django, MySQL, PostgreSQL e JavaScript."},{"name":"theme-color","content":"#1c3324"},{"property":"og:title","content":"Victor, desenvolvedor web"},{"property":"og:description","content":"Sites e sistemas, da tela ao banco de dados."},{"property":"og:type","content":"website"}],"link":[{"rel":"icon","type":"image/svg+xml","href":"/favicon.svg"}],"style":[],"script":[],"noscript":[],"htmlAttrs":{"lang":"pt-BR"},"title":"Victor, desenvolvedor web"};
 
 const appRootTag = "div";
 

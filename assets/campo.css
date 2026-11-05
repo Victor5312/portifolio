@@ -1,175 +1,20 @@
-.site {
-  overflow: clip;
-  position: relative;
-  --fundo: #f2f4ef;
-  --texto: #17221a;
-  --suave: #56645a;
-  --linha: #cdd5cb;
-}
 .percurso-campo {
   position: relative;
   height: 1900svh;
 }
-.percurso-campo .abertura {
+.abertura {
   position: sticky;
   top: 0;
   height: 100svh;
-  min-height: 0;
-}
-.percurso-campo .titulo-abertura,
-.percurso-campo .introducao-abertura {
-  opacity: clamp(0, calc(1 - var(--progresso) * 5), 1);
-}
-.percurso-campo .rodape-abertura {
-  opacity: clamp(0, calc(1 - var(--progresso) * 5), 1);
-  pointer-events: none;
-}
-.percurso-campo .rodape-abertura a {
-  pointer-events: auto;
-}
-.percurso-campo .legenda-arte {
-  bottom: auto;
-  top: 210px;
-}
-.controles-percurso {
-  position: absolute;
-  left: 4%;
-  right: 4%;
-  bottom: 67px;
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  font-size: 9px;
-  z-index: 4;
-}
-.controles-percurso button {
-  background: #10271d80;
-  border: 1px solid #c5dab45c;
-  padding: 10px 14px;
-  border-radius: 30px;
+  overflow: hidden;
   color: #fff;
-  font-size: 10px;
-}
-.controles-percurso a {
-  margin-left: auto;
-  font-size: 10px;
-}
-.barra-percurso {
-  width: 90px;
-  height: 1px;
-  background: #ffffff40;
-}
-.barra-percurso span {
-  display: block;
-  height: 100%;
-  background: #d6f0b9;
-  transform-origin: left;
-}
-.percurso-campo .rodape-abertura {
-  padding-bottom: 84px;
-}
-.mensagem-percurso {
-  position: absolute;
-  z-index: 3;
-  left: 4%;
-  bottom: 180px;
-  opacity: 0;
-  transform: translateY(25px);
-  transition:
-    opacity 0.35s,
-    transform 0.35s;
-  pointer-events: none;
-}
-.mensagem-percurso.visivel {
-  opacity: 1;
-  transform: translateY(0);
-}
-.mensagem-percurso h2 {
-  font-family: "Instrument Serif", Georgia, serif;
-  font-weight: 400;
-  font-size: clamp(45px, 6vw, 92px);
-  letter-spacing: -0.03em;
-  line-height: 1;
-  margin-top: 22px;
-}
-@media (max-width: 650px) {
-  .percurso-campo {
-    height: 1660svh;
-  }
-  .controles-percurso {
-    left: 6%;
-    right: 6%;
-    gap: 10px;
-    flex-wrap: wrap;
-    bottom: 60px;
-    font-size: 8px;
-  }
-  .barra-percurso {
-    width: 45px;
-  }
-  .controles-percurso button,
-  .controles-percurso a {
-    font-size: 8px;
-  }
-  .percurso-campo .rodape-abertura {
-    padding-bottom: 105px;
-  }
-  .percurso-campo .legenda-arte {
-    top: 165px;
-    font-size: 6px;
-  }
-  .mensagem-percurso {
-    left: 6%;
-    bottom: 200px;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .percurso-campo {
-    height: 100svh;
-  }
-}
-.site.escuro {
-  --fundo: #101712;
-  --texto: #eef3e9;
-  --suave: #adbbaa;
-  --linha: #344437;
-}
-.cabecalho {
-  position: absolute;
-  inset: 0 0 auto;
-  z-index: 5;
-  height: 100px;
-  color: #fff;
-  border-bottom: 1px solid #ffffff30;
-  background: linear-gradient(#081c1590, transparent);
-}
-.cabecalho .simbolo-marca {
-  color: #c1eaab;
-}
-.cabecalho .navegacao-principal sup {
-  color: #d4e6cc;
-}
-.cabecalho .link-contato {
-  border-color: #ffffff90;
-}
-.abertura {
-  min-height: 760px;
-  height: 100svh;
-  padding: 155px 4% 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  color: #fff;
-  background: #233c2b;
+  background: #1c3324;
   isolation: isolate;
 }
 .arte-abertura {
+  position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
   z-index: 0;
-  opacity: 1;
-  pointer-events: none;
 }
 .arte-abertura::after {
   content: "";
@@ -177,182 +22,165 @@
   inset: 0;
   pointer-events: none;
   background:
-    linear-gradient(0deg, #06170fbd, #09211433 28%, transparent 65%),
-    linear-gradient(90deg, #0a201643, transparent 65%);
+    linear-gradient(0deg, #0a140dd9, #0a140d40 34%, transparent 62%),
+    linear-gradient(180deg, #0a140d70, transparent 20%);
 }
 .campo-interativo,
 .campo-interativo canvas {
+  display: block;
   width: 100%;
   height: 100%;
-  display: block;
 }
-.campo-interativo {
-  cursor: crosshair;
+.campo-interativo canvas {
+  animation: surgir-campo 1.6s ease-out backwards;
 }
-.introducao-abertura {
+@keyframes surgir-campo {
+  from {
+    opacity: 0;
+  }
+}
+
+/* A entrada do título é só CSS: não depende do JavaScript para aparecer. */
+.apresentacao {
   position: absolute;
   z-index: 2;
-  top: 143px;
-  left: 4%;
-  right: 4%;
-  justify-content: space-between;
+  left: 4vw;
+  right: 4vw;
+  bottom: 118px;
+  opacity: clamp(0, calc(1 - var(--progresso) * 9), 1);
+  transform: translateY(calc(var(--progresso) * -260px));
   pointer-events: none;
 }
-.introducao-abertura p {
-  color: #fff;
-  font-size: 11px;
-  text-shadow: 0 1px 12px #102b18;
-}
-.introducao-abertura .sobretitulo {
-  letter-spacing: 1.7px;
-  font-size: 9px;
-}
-.ponto-destaque {
-  background: #bfe992;
-  box-shadow: 0 0 14px #c0f394;
-}
 .titulo-abertura {
-  position: relative;
+  font-size: clamp(66px, 12.2vw, 210px);
+  line-height: 0.88;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  perspective: 700px;
+}
+.titulo-abertura > span {
+  display: block;
+  transform-origin: 50% 100%;
+  animation: erguer-titulo 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.15s backwards;
+}
+.titulo-abertura > span + span {
+  animation-delay: 0.3s;
+}
+@keyframes erguer-titulo {
+  from {
+    opacity: 0;
+    transform: rotateX(-70deg) translateY(50px);
+  }
+}
+.subtitulo-abertura {
+  max-width: 44ch;
+  margin-top: 22px;
+  font-size: clamp(17px, 1.5vw, 21px);
+  line-height: 1.4;
+  animation: subir-texto 0.9s ease-out 0.7s backwards;
+}
+@keyframes subir-texto {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+.mensagem-percurso {
+  position: absolute;
   z-index: 2;
-  font-family: "Instrument Serif", Georgia, serif;
-  font-weight: 400;
-  font-size: clamp(64px, 7.1vw, 112px);
-  letter-spacing: -0.025em;
+  left: 4vw;
+  bottom: 112px;
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+  perspective: 700px;
+}
+.mensagem-percurso.visivel {
+  opacity: 1;
+}
+.mensagem-percurso h2 {
+  font-size: clamp(50px, 8.4vw, 136px);
   line-height: 0.94;
-  margin-top: auto;
-  text-shadow: 0 2px 30px #09271338;
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  transform-origin: 50% 100%;
 }
-.titulo-abertura em {
-  letter-spacing: -0.025em;
+.mensagem-percurso span {
+  display: block;
 }
-.titulo-abertura .segunda-linha {
-  padding-left: 9%;
+.frase-enter-active,
+.frase-leave-active {
+  transition:
+    opacity 0.32s,
+    transform 0.42s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-.asterisco-titulo {
-  font-family: Georgia, serif;
-  color: #c5e8a7;
-  font-size: 0.48em;
-  margin-left: 20px;
+.frase-enter-from {
+  opacity: 0;
+  transform: rotateX(-55deg) translateY(30px);
 }
-.legenda-arte {
-  z-index: 2;
-  top: auto;
-  bottom: 190px;
-  right: 4%;
-  left: auto;
-  font-size: 8px;
-  color: #e8f4df;
-  letter-spacing: 1.2px;
-  text-align: right;
-  gap: 9px;
+.frase-leave-to {
+  opacity: 0;
+  transform: rotateX(45deg) translateY(-24px);
 }
-.rodape-abertura {
-  margin-top: 32px;
-  padding-bottom: 30px;
+
+.controles-percurso {
+  position: absolute;
+  z-index: 3;
+  left: 4vw;
+  right: 4vw;
+  bottom: 30px;
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  font-size: 15px;
 }
-.rodape-abertura .circulo {
-  border-color: #c8e8bc;
-}
-.rodape-abertura .link-circular:hover .circulo {
-  color: #112519;
-  background: #c4e5ad;
-}
-.rodape-abertura > p {
-  color: #d4e6cb;
-}
-.indice-abertura {
+.paradas {
   position: relative;
-  z-index: 2;
-  border-color: #ffffff30;
-  color: #bfcdb9;
-  padding: 17px 0;
+  display: flex;
+  gap: 22px;
+  padding-bottom: 10px;
+  flex: 1;
+  max-width: 560px;
+  background: linear-gradient(#ffffff55, #ffffff55) 0 100% / 100% 2px no-repeat;
 }
-.simbolo-sobre {
-  color: #527f48;
+.paradas button {
+  opacity: 0.7;
+  transition: opacity 0.2s;
 }
-.tecnologias {
-  background: #dfe8da;
+.paradas button.passou,
+.paradas button:hover {
+  opacity: 1;
 }
-.escuro .tecnologias {
-  background: #1a291e;
+.barra-percurso {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: #ff7a4d;
+  transform-origin: left;
 }
-.rodape {
-  background: #172d1d;
-  color: #f0f6e9;
-  --texto: #f0f6e9;
-  --fundo: #172d1d;
-  --linha: #496343;
+.pausar,
+.pular {
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
-.rodape .simbolo-marca {
-  color: #b7d593;
+.pular {
+  margin-left: auto;
 }
-.rodape .seta-grande {
-  border-color: #769a67;
+.cortina {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  background: var(--fundo);
+  pointer-events: none;
 }
-.rodape .seta-grande:hover {
-  background: #284a2f;
-}
-.base-rodape,
-.rodape .preferencias {
-  border-color: #46633d;
-}
-.portfolio {
-  background: #abc49b;
-}
-.experimento {
-  background: #122419;
-}
-.arte-geometrica span {
-  border-color: #c1dfa1;
-  box-shadow: 0 0 1px #d8f0bb;
-  border-radius: 2% 90% 5% 90%;
-}
-.rotulo-experimento {
-  color: #bbd3ad;
-}
+
 .campo-alternativo {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(ellipse at 70% 36%, #d5e9bf66, transparent 40%),
-    linear-gradient(#9eaf9b 10%, #6b8459 48%, #304c2d 49%, #101e14 95%);
-}
-.campo-alternativo::after {
-  content: "";
-  position: absolute;
-  inset: 53% 0 0;
-  background: repeating-linear-gradient(
-    76deg,
-    transparent 0 10px,
-    #4f70365e 11px 13px,
-    transparent 14px 19px
-  );
-  clip-path: polygon(
-    0 25%,
-    2% 5%,
-    4% 25%,
-    7% 0,
-    10% 25%,
-    14% 8%,
-    19% 20%,
-    24% 0,
-    30% 30%,
-    35% 4%,
-    40% 20%,
-    47% 8%,
-    53% 25%,
-    59% 3%,
-    63% 25%,
-    68% 8%,
-    74% 25%,
-    80% 0,
-    85% 20%,
-    90% 5%,
-    95% 25%,
-    100% 0,
-    100% 100%,
-    0 100%
-  );
+  background: linear-gradient(#e3d9b4 10%, #7f9a62 52%, #24402a 53%, #101e14 95%);
 }
 .campo-alternativo span {
   position: absolute;
@@ -361,83 +189,50 @@
   border-radius: 0 80% 0 80%;
   background: #9ac46e;
 }
-@media (min-width: 1500px) {
-  .abertura {
-    min-height: 860px;
+
+@media (max-width: 700px) {
+  .percurso-campo {
+    height: 1660svh;
+  }
+  .apresentacao {
+    left: 6vw;
+    right: 6vw;
+    bottom: 124px;
   }
   .titulo-abertura {
-    margin-top: auto;
+    font-size: 19vw;
+  }
+  .mensagem-percurso {
+    left: 6vw;
+    right: 6vw;
+    bottom: 124px;
+  }
+  .mensagem-percurso h2 {
+    font-size: 15vw;
+  }
+  .controles-percurso {
+    left: 6vw;
+    right: 6vw;
+    bottom: 22px;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+    font-size: 14px;
+  }
+  .paradas {
+    flex-basis: 100%;
+    max-width: none;
+    gap: 0;
+    justify-content: space-between;
   }
 }
-@media (max-width: 1000px) {
-  .titulo-abertura {
-    font-size: 9vw;
-  }
-  .abertura {
-    min-height: 740px;
-  }
-  .legenda-arte {
-    bottom: 185px;
-    max-width: 180px;
-    line-height: 1.5;
-  }
+.movimento-desativado .campo-interativo canvas {
+  animation: none;
 }
-@media (max-width: 650px) {
-  .cabecalho {
-    height: 85px;
-  }
-  .navegacao-movel {
-    top: 85px;
-    position: absolute;
-    color: #e9f1e2;
-    background: #152b1cf5;
-    --linha: #3d5639;
-  }
-  .abertura {
-    min-height: 740px;
+@media (prefers-reduced-motion: reduce) {
+  .percurso-campo {
     height: 100svh;
-    padding: 120px 6% 0;
   }
-  .arte-abertura {
-    inset: 0;
-    width: 100%;
-    height: 100%;
-  }
-  .introducao-abertura {
-    top: 112px;
-    left: 6%;
-    right: 6%;
-  }
-  .introducao-abertura .sobretitulo {
-    font-size: 7px;
-    letter-spacing: 1px;
-  }
-  .introducao-abertura p {
-    font-size: 8px;
-    max-width: 138px;
-  }
-  .titulo-abertura {
-    font-size: 13vw;
-    margin-top: auto;
-    line-height: 0.98;
-    letter-spacing: -0.035em;
-  }
-  .titulo-abertura .segunda-linha {
-    padding-left: 15%;
-  }
-  .legenda-arte {
-    bottom: 290px;
-    right: 6%;
-    left: auto;
-    top: auto;
-    font-size: 6px;
-    gap: 3px;
-  }
-  .rodape-abertura {
-    margin-top: 25px;
-    padding-bottom: 26px;
-  }
-  .indice-abertura {
-    padding: 15px 0;
+  .paradas {
+    display: none;
   }
 }

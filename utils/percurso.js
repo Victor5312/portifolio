@@ -42,5 +42,9 @@ export function calcularPercurso(progresso, ponteiro = { x: 0, y: 0 }) {
   posicao[1] -= ponteiro.y * (0.65 - alinhamento * 0.47);
   olhar[0] += ponteiro.x * (2 - alinhamento * 1.6);
   olhar[1] -= ponteiro.y * 0.2;
-  return { posicao, olhar, tunel, alinhamento };
+  // Inclina a câmera nas curvas do riacho, sumindo ao chegar à clareira.
+  const curva = centroCaminho(z - 4) - centroCaminho(z + 4);
+  const inclinacao =
+    curva * 0.035 * alinhamento * (1 - suavizar((progresso - 0.52) / 0.1));
+  return { posicao, olhar, tunel, alinhamento, inclinacao };
 }

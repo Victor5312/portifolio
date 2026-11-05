@@ -1,6 +1,6 @@
 # Portfólio do Victor
 
-Portfólio autoral em Nuxt e Vue, com animações GSAP e um campo procedural em Three.js/WebGL: colinas, riacho, grama ao vento e folhas em movimento. A paleta combina verde, preto e branco. A referência visual foi a Emotion Agency; textos, composição, geometria e componentes foram criados para este projeto.
+Portfólio autoral em Nuxt e Vue, com animações GSAP e um campo procedural em Three.js/WebGL: riacho, floresta, grama ao vento, folhas, pássaros, borboletas e vaga-lumes, com céu que passa da manhã ao entardecer. A página usa Bricolage Grotesque e DM Sans sobre papel claro, tinta e laranja. Textos, composição, geometria e componentes foram criados para este projeto.
 
 ## Abrir no XAMPP
 
@@ -14,6 +14,8 @@ Remove-Item Env:NUXT_APP_BASE_URL
 
 Com o Apache iniciado, acesse `http://localhost/portifolio/`. Essa geração local tem prefixo diferente da publicação na VPS.
 
+Use o PowerShell nesse comando: o Git Bash converte `/portifolio/` em um caminho do Windows e a geração sai quebrada, sem `index.html`.
+
 A configuração `.htaccess` serve os arquivos gerados em `.output/public`. Depois de editar o código, execute `npm run generate` para atualizar a versão do XAMPP.
 
 ## Desenvolvimento
@@ -24,6 +26,8 @@ npm run dev
 ```
 
 Acesse `http://127.0.0.1:3000/`.
+
+O `npm run dev` apaga `.output`, a pasta que o XAMPP serve. Depois de usar o modo de desenvolvimento, encerre o servidor e gere a versão local de novo.
 
 ## Publicação na VPS
 
@@ -39,15 +43,15 @@ O repositório atualmente versiona `node_modules` e arquivos de construção. Em
 
 ## Conteúdo pessoal
 
-Os textos da página e as imagens usadas nas marcas e nos projetos ficam no template `app.vue`. O conteúdo não inclui formação, tempo de experiência, clientes ou resultados não confirmados.
+Os textos da página ficam no template `app.vue`. As imagens ficam em `assets/marcas`, `assets/projetos` e `assets/tecnologias` e são importadas no `app.vue`: o Vite as publica em `_nuxt/`, a rota que o `.htaccess` já libera nos dois ambientes. Não coloque imagens novas em `public/`: o `.htaccess` só entrega `_nuxt/`, `_payload.json` e `favicon.svg`. O conteúdo não inclui formação, tempo de experiência, clientes ou resultados não confirmados.
 
 O botão de contato permite salvar uma ideia em um arquivo local e informa claramente que nenhuma mensagem foi enviada.
 
-A seção de projetos apresenta trabalhos informados pelo Victor e conferidos nos arquivos locais: PersonalFit (`personalfit`), Alfred (`alfred`), RajaHub (`rajahub`) e Gostiki (`gostiki`). A presença do Alfred em 27 cidades foi informada pelo Victor. O card do RajaHub usa uma captura real da página inicial pública, embutida no `app.vue`; os demais usam capas gráficas. As descrições não atribuem autoria exclusiva. Os projetos de origem foram apenas consultados; nenhum dado de usuários ou credencial foi copiado.
+A seção de projetos apresenta trabalhos informados pelo Victor e conferidos nos arquivos locais: PersonalFit (`personalfit`), Alfred (`alfred`), RajaHub (`rajahub`) e Gostiki (`gostiki`). A presença do Alfred em 27 cidades foi informada pelo Victor. O card do RajaHub usa uma captura real da página inicial pública; os demais usam capas gráficas. As descrições não atribuem autoria exclusiva. Os projetos de origem foram apenas consultados; nenhum dado de usuários ou credencial foi copiado.
 
 ## Tecnologias
 
-A faixa de marcas usa as logos públicas de Alfred, RajaHub e Gostiki, embutidas no `app.vue` e exibidas em escala de cinza. PersonalFit aparece apenas como nome. Fontes: `https://alfredsistemas.com.br/assets/img/logo-alfred.png`, `https://rajahub.com.br/wp-content/uploads/2025/01/logo-Photoroom.png` e `https://gostiki.com.br/img/logo.png`. O movimento pode ser pausado e respeita a preferência por movimento reduzido.
+A faixa de marcas é um cilindro 3D com as logos públicas de Alfred, RajaHub e Gostiki. PersonalFit aparece apenas como nome. Fontes: `https://alfredsistemas.com.br/assets/img/logo-alfred.png`, `https://rajahub.com.br/wp-content/uploads/2025/01/logo-Photoroom.png` e `https://gostiki.com.br/img/logo.png`. O movimento pode ser pausado e respeita a preferência por movimento reduzido.
 
 - Construção: Nuxt, Vue, JavaScript, HTML, CSS, GSAP, Three.js e WebGL.
 - Tecnologias apresentadas na página: PHP, Python, Flask, Django, MySQL, JavaScript, HTML e CSS.
@@ -57,7 +61,9 @@ Os nomes de classes e IDs próprios estão em português. Os nomes reservados da
 
 ## Recursos
 
-A rolagem tem quatro etapas: atravessar o túnel de folhas, chegar à clareira com árvore e flores, afastar a câmera e orbitar 270 graus ao redor da clareira. O trecho de túnel percorre 140 unidades; a sequência completa oferece 18 alturas de tela de rolagem no desktop e 15,6 no celular. As folhas reagem ao mouse desde a abertura, com dispersão, retorno suave e rajadas. A água tem superfície transparente, ondulações e leito procedural. Os controles permitem pausar o movimento ou pular diretamente para o conteúdo. O trajeto pode ser percorrido nos dois sentidos.
+A rolagem tem quatro etapas: atravessar o túnel de folhas, chegar à clareira com árvore e flores, afastar a câmera e orbitar 270 graus ao redor da clareira. O trecho de túnel percorre 140 unidades; a sequência completa oferece 18 alturas de tela de rolagem no desktop e 15,6 no celular. As folhas reagem ao mouse desde a abertura, com dispersão, retorno suave e rajadas. A água tem superfície transparente, ondulações e leito procedural. Os controles permitem ir direto a cada parada, pausar o vento e as folhas ou pular para o conteúdo; a câmera continua acompanhando a rolagem mesmo com o movimento pausado. O trajeto pode ser percorrido nos dois sentidos. Em aparelhos lentos a resolução da cena cai sozinha.
+
+Fora da cena WebGL, o 3D é feito com CSS e GSAP: anel de tecnologias em `Sobre`, pilha de camadas em `Tecnologias`, capas de projeto que seguem o ponteiro e títulos que se erguem na rolagem. Tudo isso é desligado por "Desligar movimento" e pela preferência de movimento reduzido.
 
 Layout responsivo, filtros de tecnologias, detalhes de projetos em janelas acessíveis, tema claro/escuro, controle de movimento e respeito à preferência do sistema por movimento reduzido. Em dispositivos sem WebGL, o campo tem uma alternativa visual em CSS. O cenário não usa imagens ou modelos externos.
 

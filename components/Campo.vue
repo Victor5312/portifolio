@@ -2,6 +2,7 @@
 import * as THREE from "three";
 import { calcularPercurso, centroCaminho, margemRio } from "~/utils/percurso";
 import { criarClareira } from "~/utils/clareira";
+import { criarAmbiente } from "~/utils/ambiente";
 
 const props = defineProps({ movimento: Boolean });
 const emitir = defineEmits(["progresso"]);
@@ -14,6 +15,8 @@ const ponteiro = { x: 0, y: 0 };
 const recursos = [];
 const uniformeTempo = { value: 0 };
 const uniformeVento = { value: 0 };
+const uniformeCeu = { value: new THREE.Color("#e3e4c4") };
+const uniformeNevoa = { value: new THREE.Color("#c9d6b4") };
 let percurso,
   progressoAlvo = 0,
   progresso = 0,
@@ -44,6 +47,8 @@ function sair() {
 function acompanhar(evento) {
   const area = recipiente.value.getBoundingClientRect();
   if (
+    !area.width ||
+    !area.height ||
     evento.clientY < area.top ||
     evento.clientY > area.bottom ||
     evento.clientX < area.left ||
@@ -72,6 +77,8 @@ function guardar(recurso) {
 function redimensionar() {
   if (!renderizador) return;
   const { width, height } = recipiente.value.getBoundingClientRect();
+  // Aba oculta ou painel ainda sem tamanho: largura 0 geraria NaN na câmera.
+  if (!width || !height) return;
   renderizador.setSize(width, height);
   camera.aspect = width / height;
   camera.fov = width < 650 ? 62 : 47;
@@ -101,16 +108,16 @@ onMounted(() => {
     });
     renderizador.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     renderizador.toneMapping = THREE.ACESFilmicToneMapping;
-    renderizador.toneMappingExposure = 1.15;
+    renderizador.toneMappingExposure = 1.08;
     recipiente.value.appendChild(renderizador.domElement);
     cena = new THREE.Scene();
-    cena.background = new THREE.Color("#bccdbb");
-    cena.fog = new THREE.FogExp2("#b6c9b1", 0.032);
-    camera = new THREE.PerspectiveCamera(47, 1, 0.1, 180);
+    cena.fog = new THREE.FogExp2("#c9d6b4", 0.017);
+    camera = new THREE.PerspectiveCamera(47, 1, 0.1, 300);
     camera.position.set(0, 3.1, 12);
     camera.lookAt(0, 3.7, -12);
-    cena.add(new THREE.HemisphereLight("#f5ffe8", "#16331b", 2.2));
-    const sol = new THREE.DirectionalLight("#ecffd2", 3.2);
+    const luzCeu = new THREE.HemisphereLight("#f5ffe8", "#16331b", 2.1);
+    cena.add(luzCeu);
+    const sol = new THREE.DirectionalLight("#fff1c9", 3.3);
     sol.position.set(-12, 18, -8);
     cena.add(sol);
 
@@ -202,10 +209,10 @@ onMounted(() => {
     geometriaLeito.translate(0, -0.13, 0);
     const materialLeito = guardar(
       new THREE.ShaderMaterial({
-        uniforms: { tempo: uniformeTempo },
+        uniforms: { tempo: uniformeTempo, corNevoa: uniformeNevoa },
         vertexShader: `varying vec3 ponto; varying vec2 faixa; void main(){ ponto=position; faixa=uv; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.); }`,
         fragmentShader: `
-        uniform float tempo; varying vec3 ponto; varying vec2 faixa;
+        uniform float tempo; uniform vec3 corNevoa; varying vec3 ponto; varying vec2 faixa;
         vec2 semente(vec2 p){ return fract(sin(vec2(dot(p,vec2(127.1,311.7)),dot(p,vec2(269.5,183.3))))*43758.5453); }
         void main(){
           vec2 p=ponto.xz*5.5+vec2(sin(ponto.z*2.+tempo*.5),cos(ponto.x*3.-tempo*.4))*.09;
@@ -223,7 +230,7 @@ onMounted(() => {
           float centro=sin(faixa.x*3.14159);
           vec3 cor=mix(pedra,vec3(.025,.38,.33),centro*.6)+vec3(.48,.66,.42)*reflexo*.38;
           float nevoa=1.-exp(-length(cameraPosition-ponto)*.021);
-          gl_FragColor=vec4(mix(cor,vec3(.30,.62,.55),nevoa*.45),1.);
+          gl_FragColor=vec4(mix(cor,corNevoa,nevoa*.45),1.);
           #include <tonemapping_fragment>
           #include <colorspace_fragment>
         }`,
@@ -233,13 +240,17 @@ onMounted(() => {
     cena.add(new THREE.Mesh(geometriaLeito, materialLeito));
     const agua = guardar(
       new THREE.ShaderMaterial({
-        uniforms: { tempo: uniformeTempo },
+        uniforms: {
+          tempo: uniformeTempo,
+          corCeu: uniformeCeu,
+          corNevoa: uniformeNevoa,
+        },
         vertexShader: `uniform float tempo; varying vec3 ponto; varying vec2 faixa;
           void main(){ vec3 posicao=position; faixa=uv;
             posicao.y+=(sin(position.x*2.2+position.z*1.4-tempo*.8)*.016+sin(position.z*3.3-position.x*1.7+tempo*.6)*.009)*sin(uv.x*3.14159);
             ponto=posicao; gl_Position=projectionMatrix*modelViewMatrix*vec4(posicao,1.);
           }`,
-        fragmentShader: `uniform float tempo; varying vec3 ponto; varying vec2 faixa;
+        fragmentShader: `uniform float tempo; uniform vec3 corCeu; uniform vec3 corNevoa; varying vec3 ponto; varying vec2 faixa;
           void main(){
             float a=ponto.x*2.2+ponto.z*1.4-tempo*.8;
             float b=ponto.z*3.3-ponto.x*1.7+tempo*.6;
@@ -247,7 +258,7 @@ onMounted(() => {
             vec3 normal=normalize(vec3(-cos(a)*.07+cos(b)*.045+sin(c)*.018,1.,-cos(a)*.05-cos(b)*.08+cos(c)*.023));
             vec3 olhar=normalize(cameraPosition-ponto);
             float fresnel=.04+.96*pow(1.-max(dot(olhar,normal),0.),4.);
-            vec3 ceu=mix(vec3(.04,.24,.28),vec3(.26,.63,.65),clamp(normal.z*3.+.58,0.,1.));
+            vec3 ceu=mix(vec3(.04,.24,.28),corCeu,clamp(normal.z*3.+.58,0.,1.));
             vec3 cor=mix(vec3(.055,.49,.43),ceu,fresnel);
             vec3 meio=normalize(olhar+normalize(vec3(-.28,.52,-.8)));
             float brilho=pow(max(dot(normal,meio),0.),120.);
@@ -255,7 +266,7 @@ onMounted(() => {
             float borda=pow(abs(faixa.x*2.-1.),14.);
             cor=mix(cor,vec3(.61,.83,.64),borda*.25);
             float nevoa=1.-exp(-length(cameraPosition-ponto)*.018);
-            cor=mix(cor,vec3(.28,.62,.56),nevoa*.35);
+            cor=mix(cor,corNevoa,nevoa*.35);
             gl_FragColor=vec4(cor,clamp(.32+fresnel*.32+brilho*.25,.32,.8));
             #include <tonemapping_fragment>
             #include <colorspace_fragment>
@@ -295,9 +306,10 @@ onMounted(() => {
         transformed.z += cos(tempo*.9+fase)*position.y*position.y*.1;`,
       );
     };
-    const quantidade = window.innerWidth < 650 ? 38000 : 76000;
-    const porTrecho = quantidade / 8;
-    const trechosGrama = Array.from({ length: 8 }, () =>
+    const totalTrechos = 10;
+    const porTrecho = window.innerWidth < 650 ? 4750 : 9500;
+    const quantidade = porTrecho * totalTrechos;
+    const trechosGrama = Array.from({ length: totalTrechos }, () =>
       guardar(
         new THREE.InstancedMesh(geometriaGrama, materialGrama, porTrecho),
       ),
@@ -324,7 +336,12 @@ onMounted(() => {
         (aleatorio() - 0.5) * 0.2,
       );
       const altura =
-        (0.22 + aleatorio() * 0.75) * (Math.hypot(x, z + 150) < 14 ? 0.22 : 1);
+        (0.22 + aleatorio() * 0.75) *
+        THREE.MathUtils.lerp(
+          0.22,
+          1,
+          THREE.MathUtils.smoothstep(Math.hypot(x, z + 150), 12, 19),
+        );
       auxiliar.scale.set(0.7 + aleatorio(), altura, 1);
       auxiliar.updateMatrix();
       grama.setMatrixAt(i % porTrecho, auxiliar.matrix);
@@ -405,6 +422,16 @@ onMounted(() => {
     const poeira = new THREE.Points(poeiraGeometria, poeiraMaterial);
     cena.add(poeira);
     const clareira = criarClareira(cena, guardar, uniformeTempo, uniformeVento);
+    const ambiente = criarAmbiente({
+      cena,
+      guardar,
+      tempo: uniformeTempo,
+      vento: uniformeVento,
+      sol,
+      luzCeu,
+    });
+    uniformeCeu.value = ambiente.corCeu.value;
+    uniformeNevoa.value = ambiente.corNevoa.value;
 
     tamanho = new ResizeObserver(redimensionar);
     tamanho.observe(recipiente.value);
@@ -414,16 +441,49 @@ onMounted(() => {
     });
     visibilidade.observe(recipiente.value);
     let anterior = 0;
+    // Ao recarregar no meio da página, a câmera já nasce no ponto certo.
+    atualizarRolagem();
+    progresso = progressoAlvo;
+    let entrada = props.movimento && progresso < 0.01 ? 0 : 1;
+    let quadrosMedidos = 0;
+    let tempoMedido = 0;
+    let qualidade = Math.min(window.devicePixelRatio, 1.5);
+    let ultimoProgresso = -1;
+    function ajustarQualidade(delta) {
+      // Em aparelhos lentos reduz a resolução em vez de engasgar o percurso.
+      quadrosMedidos++;
+      tempoMedido += delta;
+      if (quadrosMedidos < 50) return;
+      const medio = tempoMedido / quadrosMedidos;
+      quadrosMedidos = 0;
+      tempoMedido = 0;
+      if (medio > 0.027 && qualidade > 0.75) {
+        qualidade = Math.max(0.75, qualidade - 0.2);
+        renderizador.setPixelRatio(qualidade);
+        redimensionar();
+      }
+    }
     function animar(agora) {
       quadro = requestAnimationFrame(animar);
       const delta = Math.min((agora - anterior) / 1000, 0.05);
       anterior = agora;
       if (!visivel || document.hidden) return;
+      ajustarQualidade(delta);
       if (props.movimento) tempo += delta;
       uniformeTempo.value = tempo;
       const suavidade = 1 - Math.exp(-delta * 5);
+      // O percurso sempre acompanha a rolagem; pausar para só o vento e as folhas.
+      progresso += (progressoAlvo - progresso) * suavidade;
+      if (
+        !props.movimento &&
+        ultimoProgresso >= 0 &&
+        Math.abs(progresso - ultimoProgresso) < 0.00002
+      )
+        return;
+      ultimoProgresso = progresso;
+      entrada = Math.min(1, entrada + delta / 2.6);
+      const aproximacao = 1 - Math.pow(1 - entrada, 3);
       if (props.movimento) {
-        progresso += (progressoAlvo - progresso) * suavidade;
         ponteiroAlvo.set(ponteiro.x, ponteiro.y);
         ponteiroSuave.lerp(ponteiroAlvo, suavidade);
         impulso *= Math.exp(-delta * 2.5);
@@ -431,13 +491,16 @@ onMounted(() => {
           (ponteiroSuave.x * forcaPonteiro * (1 + impulso) -
             uniformeVento.value) *
           suavidade;
-        const percursoAtual = calcularPercurso(progresso, ponteiroSuave);
-        camera.position.fromArray(percursoAtual.posicao);
-        alvoCamera.fromArray(percursoAtual.olhar);
-        camera.lookAt(alvoCamera);
-        camera.updateMatrixWorld();
         poeira.rotation.y = tempo * 0.006;
       }
+      const percursoAtual = calcularPercurso(progresso, ponteiroSuave);
+      camera.position.fromArray(percursoAtual.posicao);
+      camera.position.y += (1 - aproximacao) * 2.6;
+      camera.position.z += (1 - aproximacao) * 7;
+      alvoCamera.fromArray(percursoAtual.olhar);
+      camera.lookAt(alvoCamera);
+      camera.rotateZ(percursoAtual.inclinacao);
+      camera.updateMatrixWorld();
       raioPonteiro.setFromCamera(
         { x: ponteiro.x * 2, y: -ponteiro.y * 2 },
         camera,
@@ -479,11 +542,11 @@ onMounted(() => {
           );
         }
         const voltaClareira = folha.angulo + tempo * 0.16 + folha.fase * 0.35;
-        const raioClareira = 6 + (folha.raio - 1.45) * 5.5;
+        const raioClareira = 10 + (folha.raio - 1.45) * 7;
         auxiliar.position.lerp(
           encontro.set(
             Math.cos(voltaClareira) * raioClareira,
-            1.3 + folha.fase * 0.8 + Math.sin(tempo * 0.7 + folha.angulo) * 0.5,
+            0.8 + folha.fase * 1.05 + Math.sin(tempo * 0.7 + folha.angulo) * 0.5,
             -150 + Math.sin(voltaClareira) * raioClareira,
           ),
           chegadaClareira,
@@ -492,13 +555,16 @@ onMounted(() => {
           raioPonteiro.ray.closestPointToPoint(auxiliar.position, encontro);
           afastamento.subVectors(auxiliar.position, encontro);
           const distancia = afastamento.length();
+          // Um único NaN aqui apagaria a folha para sempre.
+          if (!Number.isFinite(distancia)) afastamento.set(0, 0, 0);
           const influencia = Math.max(0, 1 - distancia / 5.5) * forcaPonteiro;
           afastamento
             .normalize()
             .multiplyScalar(
               influencia * Math.min(4.2, (6.5 + impulso * 2) * folha.resposta),
             );
-          folha.deslocamento.lerp(afastamento, retornoFolhas);
+          if (Number.isFinite(afastamento.x))
+            folha.deslocamento.lerp(afastamento, retornoFolhas);
         }
         auxiliar.position.add(folha.deslocamento);
         auxiliar.rotation.set(
@@ -506,12 +572,21 @@ onMounted(() => {
           angulo + tempo * 0.2,
           angulo + folha.fase,
         );
-        auxiliar.scale.setScalar(folha.escala * (1 + chegadaClareira * 0.35));
+        // Folhas encolhem ao passar rente à lente, sem tapar a tela inteira.
+        const perto = THREE.MathUtils.smoothstep(
+          auxiliar.position.distanceTo(camera.position),
+          0.8,
+          4.5,
+        );
+        auxiliar.scale.setScalar(
+          folha.escala * (1 - chegadaClareira * 0.3) * (0.15 + perto * 0.85),
+        );
         auxiliar.updateMatrix();
         folhas.setMatrixAt(i, auxiliar.matrix);
       });
       folhas.instanceMatrix.needsUpdate = true;
       clareira.atualizar(tempo, progresso);
+      ambiente.atualizar(tempo, progresso, camera);
       trechosGrama.forEach((trecho, indice) => {
         const distancia = camera.position.z - (4 - indice * 24);
         trecho.visible =
