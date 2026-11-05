@@ -6,9 +6,9 @@ import { a as useRuntimeConfig, b as useStorage, d as defineRenderHandler, g as 
 import { createHead as createHead$1, propsToString, renderSSRHead } from 'file://C:/xampp/htdocs/portifolio/node_modules/unhead/dist/server.mjs';
 import { AsyncLocalStorage } from 'node:async_hooks';
 import { stringify, uneval } from 'file://C:/xampp/htdocs/portifolio/node_modules/devalue/index.js';
+import { FlatMetaPlugin, DeprecationsPlugin, PromisesPlugin, TemplateParamsPlugin, AliasSortingPlugin } from 'file://C:/xampp/htdocs/portifolio/node_modules/unhead/dist/plugins.mjs';
 import { walkResolver } from 'file://C:/xampp/htdocs/portifolio/node_modules/unhead/dist/utils.mjs';
 import { isRef, toValue, hasInjectionContext, inject, getCurrentScope, ref, watchEffect, getCurrentInstance, onBeforeUnmount, onDeactivated, onActivated } from 'file://C:/xampp/htdocs/portifolio/node_modules/vue/index.mjs';
-import { DeprecationsPlugin, PromisesPlugin, TemplateParamsPlugin, AliasSortingPlugin } from 'file://C:/xampp/htdocs/portifolio/node_modules/unhead/dist/plugins.mjs';
 
 const VueResolver = (_, value) => {
   return isRef(value) ? toValue(value) : value;
@@ -71,6 +71,29 @@ function clientUseHead(head, input, options = {}) {
     });
   }
   return entry;
+}
+function useSeoMeta(input = {}, options = {}) {
+  const head = options.head || /* @__PURE__ */ injectHead();
+  head.use(FlatMetaPlugin);
+  const entry = useHead(normalizeSeoMetaInput(input), options);
+  const corePatch = entry.patch;
+  entry.patch = (input2) => corePatch(normalizeSeoMetaInput(input2));
+  return entry;
+}
+function normalizeSeoMetaInput(input) {
+  if (input._flatMeta)
+    return input;
+  const meta = {};
+  for (const key in input) {
+    if (!Object.prototype.hasOwnProperty.call(input, key) || key === "title" || key === "titleTemplate")
+      continue;
+    meta[key] = input[key];
+  }
+  return {
+    title: input.title,
+    titleTemplate: input.titleTemplate,
+    _flatMeta: meta
+  };
 }
 
 // @__NO_SIDE_EFFECTS__
@@ -565,5 +588,5 @@ const renderer = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   default: handler
 }, Symbol.toStringTag, { value: 'Module' }));
 
-export { buildAssetsURL as a, baseURL as b, headSymbol as h, renderer as r, useHead as u };
+export { buildAssetsURL as a, baseURL as b, useSeoMeta as c, headSymbol as h, renderer as r, useHead as u };
 //# sourceMappingURL=renderer.mjs.map

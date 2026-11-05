@@ -6,8 +6,14 @@ RewriteCond %{REQUEST_URI} ^/portifolio/
 RewriteRule ^(?:portifolio-personalizado/?)?$ .output/public/index.html [L]
 RewriteCond %{REQUEST_URI} ^/portifolio/
 RewriteRule ^(?:portifolio-personalizado/)?(_nuxt/.*|_payload\.json|favicon\.svg)$ .output/public/$1 [L]
+RewriteCond %{REQUEST_URI} ^/portifolio/
+RewriteRule ^laboratorio/?$ .output/public/laboratorio/index.html [L]
+RewriteCond %{REQUEST_URI} ^/portifolio/
+RewriteRule ^laboratorio/_payload\.json$ .output/public/laboratorio/_payload.json [L]
 RewriteRule ^(?:portifolio-personalizado/?)?$ .output-vps/public/index.html [L]
 RewriteRule ^(?:portifolio-personalizado/)?(_nuxt/.*|_payload\.json|favicon\.svg)$ .output-vps/public/$1 [L]
+RewriteRule ^laboratorio/?$ .output-vps/public/laboratorio/index.html [L]
+RewriteRule ^laboratorio/_payload\.json$ .output-vps/public/laboratorio/_payload.json [L]
 RewriteRule ^(?:node_modules|data|components|assets|scripts)/ - [F,L]
 <FilesMatch "\.(vue|ts|md|mjs|log)$|^package(?:-lock)?\.json$">
   Require all denied

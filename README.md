@@ -51,7 +51,7 @@ O repositório atualmente versiona `node_modules` e arquivos de construção. Em
 
 ## Conteúdo pessoal
 
-Os textos da página ficam no template `app.vue`. As imagens ficam em `assets/marcas`, `assets/projetos` e `assets/tecnologias` e são importadas no `app.vue`: o Vite as publica em `_nuxt/`, a rota que o `.htaccess` já libera nos dois ambientes. Não coloque imagens novas em `public/`: o `.htaccess` só entrega `_nuxt/`, `_payload.json` e `favicon.svg`. O conteúdo não inclui formação, tempo de experiência, clientes ou resultados não confirmados.
+Os textos do portfólio ficam em `pages/index.vue`, e os do laboratório, em `pages/laboratorio.vue`. A lista de projetos do laboratório fica em `data/laboratorio.js`: para incluir um projeto ou mudar o estado dele, edite só esse arquivo. As imagens ficam em `assets/marcas`, `assets/projetos` e `assets/tecnologias` e são importadas nas páginas: o Vite as publica em `_nuxt/`, a rota que o `.htaccess` já libera nos dois ambientes. Não coloque imagens novas em `public/`: o `.htaccess` só entrega `_nuxt/`, `_payload.json`, `favicon.svg` e a rota `laboratorio`. Cada página nova precisa de regras próprias no `.htaccess`, nos dois ambientes, para a página e para o `_payload.json` dela. O conteúdo não inclui formação, tempo de experiência, clientes ou resultados não confirmados.
 
 O botão de contato permite salvar uma ideia em um arquivo local e informa claramente que nenhuma mensagem foi enviada.
 

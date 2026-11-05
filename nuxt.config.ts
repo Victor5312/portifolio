@@ -7,12 +7,14 @@ export default defineNuxtConfig({
   telemetry: false,
   nitro: {
     output: { dir: outputDir },
+    prerender: { routes: ["/", "/laboratorio"] },
   },
   css: [
     "@fontsource-variable/dm-sans",
     "@fontsource-variable/bricolage-grotesque",
     "~/assets/main.css",
     "~/assets/campo.css",
+    "~/assets/laboratorio.css",
   ],
   app: {
     baseURL,
