@@ -1,10 +1,13 @@
 Options -Indexes
 RewriteEngine On
-# Compatibilidade com a versão gerada antes da mudança para a raiz do domínio.
-RewriteRule ^portifolio-personalizado/?$ .output/public/index.html [L]
-RewriteRule ^portifolio-personalizado/(_nuxt/.*|_payload\.json|favicon\.svg)$ .output/public/$1 [L]
-RewriteRule ^$ .output/public/index.html [L]
-RewriteRule ^(_nuxt/.*|_payload\.json|favicon\.svg)$ .output/public/$1 [L]
+# Cada ambiente usa a sua geração: /portifolio/ (XAMPP) lê .output; a raiz do domínio (VPS) lê .output-vps.
+# O prefixo portifolio-personalizado mantém os caminhos da versão anterior à mudança para a raiz.
+RewriteCond %{REQUEST_URI} ^/portifolio/
+RewriteRule ^(?:portifolio-personalizado/?)?$ .output/public/index.html [L]
+RewriteCond %{REQUEST_URI} ^/portifolio/
+RewriteRule ^(?:portifolio-personalizado/)?(_nuxt/.*|_payload\.json|favicon\.svg)$ .output/public/$1 [L]
+RewriteRule ^(?:portifolio-personalizado/?)?$ .output-vps/public/index.html [L]
+RewriteRule ^(?:portifolio-personalizado/)?(_nuxt/.*|_payload\.json|favicon\.svg)$ .output-vps/public/$1 [L]
 RewriteRule ^(?:node_modules|data|components|assets|scripts)/ - [F,L]
 <FilesMatch "\.(vue|ts|md|mjs|log)$|^package(?:-lock)?\.json$">
   Require all denied

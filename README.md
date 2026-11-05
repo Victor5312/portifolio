@@ -16,7 +16,7 @@ Com o Apache iniciado, acesse `http://localhost/portifolio/`. Essa geração loc
 
 Use o PowerShell nesse comando: o Git Bash converte `/portifolio/` em um caminho do Windows e a geração sai quebrada, sem `index.html`.
 
-A configuração `.htaccess` serve os arquivos gerados em `.output/public`. Depois de editar o código, execute `npm run generate` para atualizar a versão do XAMPP.
+Em `/portifolio/`, o `.htaccess` serve os arquivos gerados em `.output/public`. Depois de editar o código, gere essa versão de novo com o comando acima.
 
 ## Desenvolvimento
 
@@ -31,15 +31,23 @@ O `npm run dev` apaga `.output`, a pasta que o XAMPP serve. Depois de usar o mod
 
 ## Publicação na VPS
 
-O domínio serve o projeto na raiz `/`. O container `portfolio_php` usa Apache, publica a porta `127.0.0.1:8100` e monta `/srv/apps/portfolio/src` em `/var/www/html` como somente leitura. O `.htaccess` serve a versão estática em `.output/public`; não é necessário Node ou MySQL para executar essa versão.
+O domínio serve o projeto na raiz `/`. O container `portfolio_php` usa Apache, publica a porta `127.0.0.1:8100` e monta `/srv/apps/portfolio/src` em `/var/www/html` como somente leitura. Na raiz, o `.htaccess` serve a versão estática em `.output-vps/public`; não é necessário Node ou MySQL para executar essa versão.
 
-Para gerar uma versão destinada à VPS sem afetar o preview local, execute `npm ci` e `npm run generate:vps` em um ambiente de construção com Node compatível com o `package-lock.json`. O comando usa a raiz `/` e grava a saída em `.output-vps/public`. Envie o conteúdo dessa pasta para `.output/public` no servidor, mantendo o `.htaccess` na raiz do projeto. Não envie a geração local de `/portifolio/`: ela aponta os scripts para o subcaminho local e impede que animações e recursos JavaScript carreguem na raiz do domínio. Apenas `git pull` não recompila o Nuxt: a saída gerada precisa acompanhar a publicação ou ser construída antes de servir a nova versão.
+O `.htaccess` escolhe a geração pelo endereço: `/portifolio/` usa `.output` e o restante usa `.output-vps`. As duas pastas são versionadas, então nada precisa ser copiado no servidor.
 
-O `.htaccess` também aceita os caminhos antigos `/portifolio-personalizado/`, usados pela versão que já estava gerada. Não adicione `RewriteBase /portifolio-personalizado/` na VPS.
+Para publicar:
+
+1. Gere as duas versões: a local, com o comando da seção do XAMPP, e a da VPS, com `npm run generate:vps`.
+2. Faça o commit na `main` e envie ao GitHub. A VPS só acompanha esse branch.
+3. Na VPS, em `/srv/apps/portfolio/src`, execute `git pull --ff-only origin main`.
+
+Se `.output-vps` não for gerada de novo antes do commit, o `git pull` publica a versão anterior do site, mesmo com o código novo no repositório.
+
+O `.htaccess` também aceita os caminhos antigos `/portifolio-personalizado/`, usados pela versão que já estava gerada. Não adicione `RewriteBase /portifolio-personalizado/` na VPS. Se o projeto local mudar de pasta, ajuste a condição `^/portifolio/` no `.htaccess`.
 
 Na correção de 29/09/2026, `.htaccess` e `nuxt.config.ts` foram ajustados tanto localmente quanto na VPS, sem commit ou push automático. Antes de atualizar com Git, registre e envie as alterações locais e confira `git diff` na VPS: as cópias editadas no servidor podem impedir o próximo pull. Os backups anteriores à correção estão em `/srv/apps/portfolio/htaccess.before-route-fix-20260929` e `/srv/apps/portfolio/nuxt.config.before-route-fix-20260929.ts`.
 
-O repositório atualmente versiona `node_modules` e arquivos de construção. Em uma manutenção separada, retire dependências e caches do índice do Git e configure um processo de geração/publicação; adicionar regras ao `.gitignore` sozinho não remove arquivos já versionados. Não remova `.output/public` da publicação enquanto o Apache depender dessa pasta.
+O repositório atualmente versiona `node_modules` e arquivos de construção. Em uma manutenção separada, retire dependências e caches do índice do Git e configure um processo de geração/publicação; adicionar regras ao `.gitignore` sozinho não remove arquivos já versionados. Não remova `.output/public` nem `.output-vps/public` do repositório enquanto o Apache depender dessas pastas.
 
 ## Conteúdo pessoal
 
